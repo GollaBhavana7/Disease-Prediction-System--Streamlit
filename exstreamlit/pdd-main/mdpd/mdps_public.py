@@ -80,12 +80,13 @@ if selected == "Logout":
     st.stop()
 
 # Set background images based on selected page
+# Set background images based on selected page
 if selected == "Diabetes Prediction":
     st.markdown(
         f"""
         <style>
         .stApp {{
-            background-image: 'exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg');
+            background-image: url('exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg');
             background-size: cover;
             background-position: center;
         }}
@@ -97,7 +98,7 @@ elif selected == "Heart Disease Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: 'exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg';
+            background-image: url('exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg');
             background-size: cover;
             background-position: center;
         }}
@@ -109,13 +110,14 @@ elif selected == "Parkinson's Prediction":
         f"""
         <style>
         .stApp {{
-            background-image:'exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg';
+            background-image: url('exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg');
             background-size: cover;
             background-position: center;
         }}
         </style>
         """, unsafe_allow_html=True
     )
+
 
 # Signup Page
 if selected == "Signup":
