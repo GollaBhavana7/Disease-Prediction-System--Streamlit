@@ -85,7 +85,7 @@ if selected == "Diabetes Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: pickle.load(open('exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg'));
+            background-image: 'exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg');
             background-size: cover;
             background-position: center;
         }}
@@ -97,7 +97,7 @@ elif selected == "Heart Disease Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: pickle.load(open('exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg'));
+            background-image: 'exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg';
             background-size: cover;
             background-position: center;
         }}
@@ -109,7 +109,7 @@ elif selected == "Parkinson's Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: pickle.load(open('exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg'));
+            background-image:'exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg';
             background-size: cover;
             background-position: center;
         }}
