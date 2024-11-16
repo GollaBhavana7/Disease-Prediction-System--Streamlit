@@ -86,7 +86,7 @@ if selected == "Diabetes Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: url('exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg');
+            background-image: url('https://github.com/GollaBhavana7/exstreamlit/blob/main/exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg');
             background-size: cover;
             background-position: center;
         }}
