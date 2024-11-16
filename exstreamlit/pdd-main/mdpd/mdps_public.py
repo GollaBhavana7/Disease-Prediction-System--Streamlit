@@ -96,29 +96,31 @@ if selected == "Diabetes Prediction":
 
 elif selected == "Heart Disease Prediction":
     st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url('exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg
-');
-            background-size: cover;
-            background-position: center;
-        }}
-        </style>
-        """, unsafe_allow_html=True
-    )
+    f"""
+    <style>
+    .stApp {{
+        background-image: url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg');
+        background-size: cover;
+        background-position: center;
+    }}
+    </style>
+    """, unsafe_allow_html=True
+)
+
 elif selected == "Parkinson's Prediction":
     st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url('exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg');
-            background-size: cover;
-            background-position: center;
-        }}
-        </style>
-        """, unsafe_allow_html=True
-    )
+    f"""
+    <style>
+    .stApp {{
+        background-image: url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg');
+        background-size: cover;
+        background-position: center;
+    }}
+    </style>
+    """, unsafe_allow_html=True
+)
+
+    
 
 
 # Signup Page
