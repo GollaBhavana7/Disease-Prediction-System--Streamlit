@@ -86,13 +86,14 @@ if selected == "Diabetes Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: url('https://github.com/GollaBhavana7/exstreamlit/blob/main/exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg');
+            background-image: url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg');
             background-size: cover;
             background-position: center;
         }}
         </style>
         """, unsafe_allow_html=True
     )
+
 elif selected == "Heart Disease Prediction":
     st.markdown(
         f"""
