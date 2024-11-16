@@ -4,9 +4,9 @@ from streamlit_option_menu import option_menu
 import re
 
 # Load saved models (adjust the paths based on your environment)
-diabetes_model = pickle.load(open('pdd-main/mdpd/diabetes_model.sav', 'rb'))
-heart_disease_model = pickle.load(open('pdd-main/mdpd/heart_disease_model.sav', 'rb'))
-parkinsons_model = pickle.load(open('pdd-main/mdpd/parkinsons_model.sav', 'rb'))
+diabetes_model = pickle.load(open('exstreamlit/pdd-main/mdpd/diabetes_model.sav', 'rb'))
+heart_disease_model = pickle.load(open('exstreamlit/pdd-main/mdpd/heart_disease_model.sav', 'rb'))
+parkinsons_model = pickle.load(open('exstreamlit/pdd-main/mdpd/parkinsons_model.sav', 'rb'))
 
 # Dictionary to store user data temporarily (for simplicity)
 users_db = {}
@@ -85,7 +85,7 @@ if selected == "Diabetes Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: pickle.load(open('pdd-main/mdpd/images/diabetes_background.jpg'));
+            background-image: pickle.load(open('exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg'));
             background-size: cover;
             background-position: center;
         }}
@@ -97,7 +97,7 @@ elif selected == "Heart Disease Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: pickle.load(open('pdd-main/mdpd/images/heart_disease_background.jpg'));
+            background-image: pickle.load(open('exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg'));
             background-size: cover;
             background-position: center;
         }}
@@ -109,7 +109,7 @@ elif selected == "Parkinson's Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: pickle.load(open('pdd-main/mdpd/images/parkinsons_background.jpg'));
+            background-image: pickle.load(open('exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg'));
             background-size: cover;
             background-position: center;
         }}
