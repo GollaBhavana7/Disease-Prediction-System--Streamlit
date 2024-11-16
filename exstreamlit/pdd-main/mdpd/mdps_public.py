@@ -98,7 +98,8 @@ elif selected == "Heart Disease Prediction":
         f"""
         <style>
         .stApp {{
-            background-image: url('exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg');
+            background-image: url('exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg
+');
             background-size: cover;
             background-position: center;
         }}
