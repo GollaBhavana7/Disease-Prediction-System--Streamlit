@@ -83,16 +83,17 @@ if selected == "Logout":
 # Set background images based on selected page
 if selected == "Diabetes Prediction":
     st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/diabetes_background.jpg');
-            background-size: cover;
-            background-position: center;
-        }}
-        </style>
-        """, unsafe_allow_html=True
-    )
+    f"""
+    <style>
+    .stApp {{
+        background-image: url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/diabeties_background.jpg');
+        background-size: cover;
+        background-position: center;
+    }}
+    </style>
+    """, unsafe_allow_html=True
+)
+
 
 elif selected == "Heart Disease Prediction":
     st.markdown(
