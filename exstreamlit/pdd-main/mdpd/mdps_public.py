@@ -198,11 +198,21 @@ if st.session_state.logged_in:
         Age = st.number_input("Age of the Person", min_value=0)
 
         if st.button("Diabetes Test Result"):
-            diab_prediction = diabetes_model.predict(
-                [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
-            )
-            result = "The person is diabetic" if diab_prediction[0] == 1 else "The person is not diabetic"
-            st.success(f"Patient: {patient_name},   Age: {Age},   Result: {result}")
+        diab_prediction = diabetes_model.predict(
+            [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
+        )
+        result = "The person is diabetic" if diab_prediction[0] == 1 else "The person is not diabetic"
+    
+        st.markdown(
+            f"""
+            <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
+                <p style="margin: 0;"><strong>Patient:</strong> {patient_name}</p>
+                <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
+                <p style="margin: 0;"><strong>Result:</strong> {result}</p>
+            </div>
+            """, unsafe_allow_html=True
+        )
+
 
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
@@ -251,16 +261,22 @@ if st.session_state.logged_in:
         with col2:
              patient_name = st.text_input("Patient Name")
             
-        if st.button('Heart Disease Test Result'):
-            heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
-            
-            heart_diagnosis = ''
-            if heart_prediction == 0:
-                heart_diagnosis = 'The person does not have heart disease'
-            else:
-                heart_diagnosis = 'The person has heart disease'
-                
-            st.success(f'Patient: {patient_name}, Result: {heart_diagnosis}')
+    if st.button('Heart Disease Test Result'):
+        heart_prediction = heart_disease_model.predict(
+            [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]]
+        )
+    
+        heart_diagnosis = 'The person does not have heart disease' if heart_prediction == 0 else 'The person has heart disease'
+
+        st.markdown(
+            f"""
+            <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
+                <p style="margin: 0;"><strong>Patient:</strong> {patient_name}</p>
+                <p style="margin: 0;"><strong>Result:</strong> {heart_diagnosis}</p>
+            </div>
+            """, unsafe_allow_html=True
+        )
+
 
     elif selected == "Parkinson's Prediction":
         st.title('Parkinson\'s Disease Prediction using ML')
@@ -276,7 +292,13 @@ if st.session_state.logged_in:
 
         if st.button("Parkinson's Test Result"):
             parkinsons_prediction = parkinsons_model.predict([[fo, fhi, o2, ppe, knm, fk]])
+            result = "The person does not have Parkinson's disease" if parkinsons_prediction == 0 else "The person has Parkinson's disease"
 
-            result = 'The person does not have Parkinson\'s disease' if parkinsons_prediction == 0 else 'The person has Parkinson\'s disease'
-
-            st.success(f"Patient: {name},   Result: {result}")
+            st.markdown(
+            f"""
+            <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
+                <p style="margin: 0;"><strong>Patient:</strong> {name}</p>
+                <p style="margin: 0;"><strong>Result:</strong> {result}</p>
+            </div>
+            """, unsafe_allow_html=True
+            )
