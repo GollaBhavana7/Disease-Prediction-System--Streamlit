@@ -198,20 +198,20 @@ if st.session_state.logged_in:
         Age = st.number_input("Age of the Person", min_value=0)
 
         if st.button("Diabetes Test Result"):
-        diab_prediction = diabetes_model.predict(
-            [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
-        )
-        result = "The person is diabetic" if diab_prediction[0] == 1 else "The person is not diabetic"
+            diab_prediction = diabetes_model.predict(
+                [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
+            )
+            result = "The person is diabetic" if diab_prediction[0] == 1 else "The person is not diabetic"
     
-        st.markdown(
-            f"""
-            <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
-                <p style="margin: 0;"><strong>Patient:</strong> {patient_name}</p>
-                <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
-                <p style="margin: 0;"><strong>Result:</strong> {result}</p>
-            </div>
-            """, unsafe_allow_html=True
-        )
+            st.markdown(
+                f"""
+                <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
+                    <p style="margin: 0;"><strong>Patient:</strong> {patient_name}</p>
+                    <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
+                    <p style="margin: 0;"><strong>Result:</strong> {result}</p>
+                </div>
+                """, unsafe_allow_html=True
+            )
 
 
     elif selected == "Heart Disease Prediction":
