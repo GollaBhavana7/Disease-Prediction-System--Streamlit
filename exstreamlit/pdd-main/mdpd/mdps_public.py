@@ -214,167 +214,167 @@ if st.session_state.logged_in:
             )
 
 
-    elif selected == "Heart Disease Prediction":
-        st.title('Heart Disease Prediction using ML')
+        elif selected == "Heart Disease Prediction":
+            st.title('Heart Disease Prediction using ML')
         
-        col1, col2, col3 = st.columns(3)
+            col1, col2, col3 = st.columns(3)
         
-        with col1:
-            age = st.number_input('Age')
+            with col1:
+                age = st.number_input('Age')
             
-        with col2:
-            sex = st.number_input('Sex')
+            with col2:
+                sex = st.number_input('Sex')
             
-        with col3:
-            cp = st.number_input('Chest Pain types')
+            with col3:
+                cp = st.number_input('Chest Pain types')
             
-        with col1:
-            trestbps = st.number_input('Resting Blood Pressure')
+            with col1:
+                trestbps = st.number_input('Resting Blood Pressure')
             
-        with col2:
-            chol = st.number_input('Serum Cholestoral in mg/dl')
+            with col2:
+                chol = st.number_input('Serum Cholestoral in mg/dl')
             
-        with col3:
-            fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl')
+            with col3:
+                fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl')
             
-        with col1:
-            restecg = st.number_input('Resting Electrocardiographic results')
+            with col1:
+                restecg = st.number_input('Resting Electrocardiographic results')
             
-        with col2:
-            thalach = st.number_input('Maximum Heart Rate achieved')
+            with col2:
+                thalach = st.number_input('Maximum Heart Rate achieved')
             
-        with col3:
-            exang = st.number_input('Exercise Induced Angina')
+            with col3:
+                exang = st.number_input('Exercise Induced Angina')
             
-        with col1:
-            oldpeak = st.number_input('ST depression induced by exercise')
+            with col1:
+                oldpeak = st.number_input('ST depression induced by exercise')
             
-        with col2:
-            slope = st.number_input('Slope of the peak exercise ST segment')
+            with col2:
+                slope = st.number_input('Slope of the peak exercise ST segment')
             
-        with col3:
-            ca = st.number_input('Major vessels colored by flourosopy')
+            with col3:
+                ca = st.number_input('Major vessels colored by flourosopy')
             
-        with col1:
-            thal = st.number_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect')
+            with col1:
+                thal = st.number_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect')
 
-        with col2:
-             patient_name = st.text_input("Patient Name")
+            with col2:
+                 patient_name = st.text_input("Patient Name")
             
-    if st.button('Heart Disease Test Result'):
-        heart_prediction = heart_disease_model.predict(
-            [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]]
-        )
+        if st.button('Heart Disease Test Result'):
+            heart_prediction = heart_disease_model.predict(
+                [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]]
+            )
     
-        heart_diagnosis = 'The person does not have heart disease' if heart_prediction == 0 else 'The person has heart disease'
+            heart_diagnosis = 'The person does not have heart disease' if heart_prediction == 0 else 'The person has heart disease'
 
-        st.markdown(
-            f"""
-            <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
-                <p style="margin: 0;"><strong>Patient:</strong> {patient_name}</p>
-                <p style="margin: 0;"><strong>Age:</strong> {age}</p>
-                <p style="margin: 0;"><strong>Result:</strong> {heart_diagnosis}</p>
-            </div>
-            """, unsafe_allow_html=True
-        )
+            st.markdown(
+                f"""
+                <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
+                    <p style="margin: 0;"><strong>Patient:</strong> {patient_name}</p>
+                    <p style="margin: 0;"><strong>Age:</strong> {age}</p>
+                    <p style="margin: 0;"><strong>Result:</strong> {heart_diagnosis}</p>
+                </div>
+                """, unsafe_allow_html=True
+            )
 
 
      # Parkinson's Prediction Page
-    elif selected == "Parkinson's Prediction":
-        st.title("Parkinson's Disease Prediction using ML")
-        col1, col2, col3, col4, col5 = st.columns(5)
-        with col1:
-            patient_name = st.text_input("Patient Name")
+        elif selected == "Parkinson's Prediction":
+            st.title("Parkinson's Disease Prediction using ML")
+            col1, col2, col3, col4, col5 = st.columns(5)
+            with col1:
+                patient_name = st.text_input("Patient Name")
 
-        with col2:
-            Age = st.number_input("Age of the Person", min_value=0)
+            with col2:
+                Age = st.number_input("Age of the Person", min_value=0)
         
-        with col3:
-            fo = st.text_input('MDVP:Fo(Hz)')
+            with col3:
+                fo = st.text_input('MDVP:Fo(Hz)')
 
-        with col4:
-            fhi = st.text_input('MDVP:Fhi(Hz)')
+            with col4:
+                fhi = st.text_input('MDVP:Fhi(Hz)')
 
-        with col5:
-            flo = st.text_input('MDVP:Flo(Hz)')
+            with col5:
+                flo = st.text_input('MDVP:Flo(Hz)')
 
-        with col1:
-            Jitter_percent = st.text_input('MDVP:Jitter(%)')
+            with col1:
+                Jitter_percent = st.text_input('MDVP:Jitter(%)')
 
-        with col2:
-            Jitter_Abs = st.text_input('MDVP:Jitter(Abs)')
+            with col2:
+                Jitter_Abs = st.text_input('MDVP:Jitter(Abs)')
 
-        with col3:
-            RAP = st.text_input('MDVP:RAP')
+            with col3:
+                RAP = st.text_input('MDVP:RAP')
 
-        with col4:
-            PPQ = st.text_input('MDVP:PPQ')
+            with col4:
+                PPQ = st.text_input('MDVP:PPQ')
 
-    with col5:
-        DDP = st.text_input('Jitter:DDP')
+            with col5:
+                DDP = st.text_input('Jitter:DDP')
 
-    with col1:
-        Shimmer = st.text_input('MDVP:Shimmer')
+            with col1:
+                Shimmer = st.text_input('MDVP:Shimmer')
 
-        with col2:
-            Shimmer_dB = st.text_input('MDVP:Shimmer(dB)')
+            with col2:
+                Shimmer_dB = st.text_input('MDVP:Shimmer(dB)')
 
-        with col3:
-            APQ3 = st.text_input('Shimmer:APQ3')
+            with col3:
+                APQ3 = st.text_input('Shimmer:APQ3')
 
-        with col4:
-            APQ5 = st.text_input('Shimmer:APQ5')
+            with col4:
+                APQ5 = st.text_input('Shimmer:APQ5')
 
-        with col5:
-            APQ = st.text_input('MDVP:APQ')
+            with col5:
+                APQ = st.text_input('MDVP:APQ')
 
-        with col1:
-            DDA = st.text_input('Shimmer:DDA')
+            with col1:
+                DDA = st.text_input('Shimmer:DDA')
 
-        with col2:
-            NHR = st.text_input('NHR')
+            with col2:
+                NHR = st.text_input('NHR')
 
-        with col3:
-            HNR = st.text_input('HNR')
+            with col3:
+                HNR = st.text_input('HNR')
 
-        with col4:
-            RPDE = st.text_input('RPDE')
+            with col4:
+                RPDE = st.text_input('RPDE')
 
-        with col5:
-            DFA = st.text_input('DFA')
+            with col5:
+                DFA = st.text_input('DFA')
 
-        with col1:
-            spread1 = st.text_input('spread1')
+            with col1:
+                spread1 = st.text_input('spread1')
 
-        with col2:
-            spread2 = st.text_input('spread2')
+            with col2:
+                spread2 = st.text_input('spread2')
 
-        with col3:
-            D2 = st.text_input('D2')
+            with col3:
+                D2 = st.text_input('D2')
 
-        with col4:
-            PPE = st.text_input('PPE')
+            with col4:
+                PPE = st.text_input('PPE')
     
-        if st.button("Parkinson's Test Result"):
-            user_input = [fo, fhi, flo, Jitter_percent, Jitter_Abs,
-                      RAP, PPQ, DDP,Shimmer, Shimmer_dB, APQ3, APQ5,
-                      APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
+            if st.button("Parkinson's Test Result"):
+                user_input = [fo, fhi, flo, Jitter_percent, Jitter_Abs,
+                              RAP, PPQ, DDP,Shimmer, Shimmer_dB, APQ3, APQ5,
+                              APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
 
-            user_input = [float(x) for x in user_input]
+                user_input = [float(x) for x in user_input]
 
-            parkinsons_prediction = parkinsons_model.predict([user_input])
+                parkinsons_prediction = parkinsons_model.predict([user_input])
 
-            parkinsons_diagnosis = ""
-            if parkinsons_prediction[0] == 1:
-                parkinsons_diagnosis = "The person has Parkinson's disease"
-            else:
-                parkinsons_diagnosis = "The person does not have Parkinson's disease"
-                st.markdown(
-                f"""
-                <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
-                    <p style="margin: 0;"><strong>Patient:</strong> {name}</p>
-                    <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
-                    <p style="margin: 0;"><strong>Result:</strong> {result}</p>
-                </div>
-                """, unsafe_allow_html=True
-                )
+                parkinsons_diagnosis = ""
+                if parkinsons_prediction[0] == 1:
+                    parkinsons_diagnosis = "The person has Parkinson's disease"
+                else:
+                    parkinsons_diagnosis = "The person does not have Parkinson's disease"
+                    st.markdown(
+                    f"""
+                    <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
+                        <p style="margin: 0;"><strong>Patient:</strong> {name}</p>
+                        <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
+                        <p style="margin: 0;"><strong>Result:</strong> {result}</p>
+                    </div>
+                    """, unsafe_allow_html=True
+                    )
