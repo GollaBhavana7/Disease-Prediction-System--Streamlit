@@ -362,16 +362,16 @@ if st.session_state.logged_in:
 
             parkinsons_prediction = parkinsons_model.predict([user_input])
             parkinsons_diagnosis = ""
-                if parkinsons_prediction[0] == 1:
-                    parkinsons_diagnosis = "The person has Parkinson's disease"
-                else:
-                    parkinsons_diagnosis = "The person does not have Parkinson's disease"
-                    st.markdown(
-                    f"""
-                    <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
-                        <p style="margin: 0;"><strong>Patient:</strong> {name}</p>
-                        <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
-                        <p style="margin: 0;"><strong>Result:</strong> {result}</p>
-                    </div>
-                    """, unsafe_allow_html=True
-                    )
+            if parkinsons_prediction[0] == 1:
+                parkinsons_diagnosis = "The person has Parkinson's disease"
+            else:
+                parkinsons_diagnosis = "The person does not have Parkinson's disease"
+                st.markdown(
+                f"""
+                <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
+                    <p style="margin: 0;"><strong>Patient:</strong> {name}</p>
+                    <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
+                    <p style="margin: 0;"><strong>Result:</strong> {result}</p>
+                </div>
+                """, unsafe_allow_html=True
+                )
