@@ -185,12 +185,12 @@ if st.session_state.logged_in:
             except Exception as e:
                 st.error("Error during prediction. Check your model or input data.")
                 result = None
-
             if result:
-                # Display Test Result
-                st.markdown(f"### Test Result: {result}")
-                st.markdown("#### [Click here to see Test Report](#)")
+            # Display test result message
+            st.markdown(f"### Test Result: {result}")
+            show_report = st.button("Click here to see Test Report")
 
+            
                 if show_report:
                     # Display detailed test data only after clicking the link
                     st.markdown("#### Patient Information:")
