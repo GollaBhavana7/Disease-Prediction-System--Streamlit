@@ -248,6 +248,8 @@ if st.session_state.logged_in:
             ca = st.number_input('Number of major vessels colored by fluoroscopy')
         with col1:
             thal = st.number_input('thalassemia')
+        with col2:
+            patient_name = st.text_input("Patient Name")
 
         if st.button("Heart Disease Test Result"):
             # Model prediction
