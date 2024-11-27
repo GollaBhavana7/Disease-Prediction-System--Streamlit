@@ -187,8 +187,8 @@ if st.session_state.logged_in:
                 result = None
             if result:
             # Display test result message
-            st.markdown(f"### Test Result: {result}")
-            show_report = st.button("Click here to see Test Report")
+                st.markdown(f"### Test Result: {result}")
+                show_report = st.button("Click here to see Test Report")
 
             
                 if show_report:
