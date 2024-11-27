@@ -188,6 +188,8 @@ if st.session_state.logged_in:
             if result:
                 # Display test result message
                 st.markdown(f"### Test Result: {result}")
+                st.session_state.show_report = True
+            if st.session_state.show_report:
                 show_report = st.button("Click here to see Test Report")
 
             
