@@ -198,20 +198,46 @@ if st.session_state.logged_in:
         Age = st.number_input("Age of the Person", min_value=0)
 
         if st.button("Diabetes Test Result"):
-            diab_prediction = diabetes_model.predict(
-                [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
-            )
-            result = "The person is diabetic" if diab_prediction[0] == 1 else "The person is not diabetic"
+    # Model prediction
+    diab_prediction = diabetes_model.predict(
+        [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
+    )
+    result = "Positive" if diab_prediction[0] == 1 else "Negative"
+
+    # Display Test Result
+    st.markdown(f"### Test Result: {result}")
+    st.markdown("#### [Click here to see Test Report](#)")
     
-            st.markdown(
-                f"""
-                <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
-                    <p style="margin: 0;"><strong>Patient name:</strong> {patient_name}</p>
-                    <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
-                    <p style="margin: 0;"><strong>Result:</strong> {result}</p>
-                </div>
-                """, unsafe_allow_html=True
-            )
+    # Patient Information
+    st.markdown(f"""
+    **Patient Name**: {patient_name}  
+    **Gender**: {gender}  
+    **Age**: {Age}
+    """)
+
+    # Tabular Data
+    test_data = {
+        "Parameter Name": [
+            "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness", 
+            "Insulin", "BMI", "Diabetes Pedigree Function"
+        ],
+        "Patient Values": [
+            Pregnancies, Glucose, BloodPressure, SkinThickness, 
+            Insulin, BMI, DiabetesPedigreeFunction
+        ],
+        "Normal Range": [
+            "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
+        ],
+        "Unit": [
+            "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
+        ]
+    }
+
+    st.table(test_data)
+
+    # Email Message
+    st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
+
 
 
     elif selected == "Heart Disease Prediction":
