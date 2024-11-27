@@ -240,8 +240,8 @@ if st.session_state.logged_in:
 
             # Email Message
             st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
-            else:
-                st.error("No result available. Ensure all inputs are valid and try again.")
+        else:
+            st.error("No result available. Ensure all inputs are valid and try again.")
 
 
     elif selected == "Heart Disease Prediction":
