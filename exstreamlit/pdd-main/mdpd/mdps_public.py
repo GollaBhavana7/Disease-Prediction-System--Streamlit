@@ -186,7 +186,7 @@ if st.session_state.logged_in:
                 st.error("Error during prediction. Check your model or input data.")
                 result = None
             if result:
-            # Display test result message
+                # Display test result message
                 st.markdown(f"### Test Result: {result}")
                 show_report = st.button("Click here to see Test Report")
 
@@ -213,12 +213,12 @@ if st.session_state.logged_in:
                         "Unit": [
                             "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
                         ]
-                    }
+                        }
 
-                    st.table(test_data)
+                        st.table(test_data)
 
                     # Email Message
-                    st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
+                        st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
 
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
