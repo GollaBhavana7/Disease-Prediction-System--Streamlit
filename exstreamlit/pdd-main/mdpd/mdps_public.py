@@ -196,48 +196,52 @@ if st.session_state.logged_in:
         BMI = st.number_input("BMI value", min_value=0.0, format="%.2f")
         DiabetesPedigreeFunction = st.number_input("Diabetes Pedigree Function value", min_value=0.0, format="%.2f")
         Age = st.number_input("Age of the Person", min_value=0)
-
         if st.button("Diabetes Test Result"):
     # Model prediction
-            diab_prediction = diabetes_model.predict(
-            [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
-            )
-            result = "Positive" if diab_prediction[0] == 1 else "Negative"
+            try:
+                diab_prediction = diabetes_model.predict(
+                [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
+                )
+                result = "Positive" if diab_prediction[0] == 1 else "Negative"
+            except Exception as e:
+                st.error("Error during prediction. Check your model or input data.")
+                result = None
+            if result:
+        # Display Test Result
+                st.markdown(f"### Test Result: {result}")
+                st.markdown("#### [Click here to see Test Report](#)")
 
-    # Display Test Result
-        st.markdown(f"### Test Result: {result}")
-        st.markdown("#### [Click here to see Test Report](#)")
-    
-        # Patient Information
-        st.markdown(f"""
-        **Patient Name**: {patient_name}  
-        **Gender**: {gender}  
-        **Age**: {Age}
-        """)
+                # Patient Information
+                st.markdown(f"""
+                **Patient Name**: {patient_name}  
+                **Gender**: {gender}  
+                **Age**: {Age}
+                """)
 
-    # Tabular Data
-        test_data = {
-            "Parameter Name": [
-                "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness", 
-                "Insulin", "BMI", "Diabetes Pedigree Function"
-            ],
-            "Patient Values": [
-                Pregnancies, Glucose, BloodPressure, SkinThickness, 
-                Insulin, BMI, DiabetesPedigreeFunction
-            ],
-            "Normal Range": [
-                "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
-            ],
-            "Unit": [
-                "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
-            ]
-        }
+                # Tabular Data
+                test_data = {
+                    "Parameter Name": [
+                    "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness", 
+                    "Insulin", "BMI", "Diabetes Pedigree Function"
+                    ],
+                "Patient Values": [
+                    Pregnancies, Glucose, BloodPressure, SkinThickness, 
+                    Insulin, BMI, DiabetesPedigreeFunction
+                    ],
+                    "Normal Range": [
+                        "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
+                        ],
+                    "Unit": [
+                     "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
+                    ]
+                }
 
-        st.table(test_data)
+            st.table(test_data)
 
-        # Email Message
-        st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
-
+            # Email Message
+            st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
+            else:
+                st.error("No result available. Ensure all inputs are valid and try again.")
 
 
     elif selected == "Heart Disease Prediction":
