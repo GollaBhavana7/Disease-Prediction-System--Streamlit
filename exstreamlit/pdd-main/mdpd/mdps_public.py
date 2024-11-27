@@ -216,8 +216,6 @@ if st.session_state.logged_in:
                     }
 
                 st.table(test_data)
-                st.write("Test data:", test_data)
-
 
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
