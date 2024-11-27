@@ -238,7 +238,7 @@ if st.session_state.logged_in:
             st.table(test_data)
 
             # Email Message
-            st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
+        st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
         else:
             st.error("No result available. Ensure all inputs are valid and try again.")
 
