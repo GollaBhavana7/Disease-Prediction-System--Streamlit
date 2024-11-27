@@ -219,6 +219,9 @@ if st.session_state.logged_in:
 
                     # Email Message
                     st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
+                    st.write("Prediction result:", diab_prediction)
+                    st.write("Test data:", test_data)
+
 
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
