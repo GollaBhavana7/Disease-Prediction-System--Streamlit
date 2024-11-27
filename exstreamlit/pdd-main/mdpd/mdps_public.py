@@ -189,40 +189,38 @@ if st.session_state.logged_in:
                 # Display test result message
                 st.markdown(f"### Test Result: {result}")
                 st.session_state.show_report = True
-            if st.session_state.show_report:
-                show_report = st.button("Click here to see Test Report")
-
-            
-                if show_report:
-                    # Display detailed test data only after clicking the link
-                    st.markdown("#### Patient Information:")
-                    st.markdown(f"**Patient Name**: {patient_name}")
-                    st.markdown(f"**Age**: {Age}")# Patient Information
+        if st.session_state.show_report:
+            show_report = st.button("Click here to see Test Report")
+            if show_report:
+                # Display detailed test data only after clicking the link
+                st.markdown("#### Patient Information:")
+                st.markdown(f"**Patient Name**: {patient_name}")
+                st.markdown(f"**Age**: {Age}")# Patient Information
                  
-                    # Tabular Data
-                    test_data = {
-                        "Parameter Name": [
-                        "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness", 
-                        "Insulin", "BMI", "Diabetes Pedigree Function"
-                        ] ,
-                        "Patient Values": [
-                            Pregnancies, Glucose, BloodPressure, SkinThickness, 
-                            Insulin, BMI, DiabetesPedigreeFunction
-                        ],
-                        "Normal Range": [
-                            "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
-                        ],
-                        "Unit": [
-                            "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
-                        ]
-                        }
+                # Tabular Data
+                test_data = {
+                    "Parameter Name": [
+                    "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness", 
+                    "Insulin", "BMI", "Diabetes Pedigree Function"
+                    ] ,
+                    "Patient Values": [
+                        Pregnancies, Glucose, BloodPressure, SkinThickness, 
+                        Insulin, BMI, DiabetesPedigreeFunction
+                    ],
+                    "Normal Range": [
+                        "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
+                    ],
+                    "Unit": [
+                        "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
+                    ]
+                    }
 
-                    st.table(test_data)
+                st.table(test_data)
 
                     # Email Message
-                    st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
-                    st.write("Prediction result:", diab_prediction)
-                    st.write("Test data:", test_data)
+                st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
+                st.write("Prediction result:", diab_prediction)
+                st.write("Test data:", test_data)
 
 
     elif selected == "Heart Disease Prediction":
