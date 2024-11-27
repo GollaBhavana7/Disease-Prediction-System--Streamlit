@@ -213,8 +213,7 @@ if st.session_state.logged_in:
 
                 # Patient Information
                 st.markdown(f"""
-                **Patient Name**: {patient_name}  
-                **Gender**: {gender}  
+                **Patient Name**: {patient_name}    
                 **Age**: {Age}
                 """)
 
