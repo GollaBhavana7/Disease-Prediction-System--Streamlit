@@ -191,29 +191,29 @@ if st.session_state.logged_in:
                 st.markdown(f"### Test Result: {result}")
                 st.markdown("#### [Click here to see Test Report](#)")
 
-                # Patient Information
-                st.markdown(f"""
-                **Patient Name**: {patient_name}    
-                **Age**: {Age}
-                """)
-
-                # Tabular Data
-                test_data = {
-                    "Parameter Name": [
+                if show_report:
+                    # Display detailed test data only after clicking the link
+                    st.markdown("#### Patient Information:")
+                    st.markdown(f"**Patient Name**: {patient_name}")
+                    st.markdown(f"**Age**: {Age}")# Patient Information
+                 
+                    # Tabular Data
+                    test_data = {
+                        "Parameter Name": [
                         "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness", 
                         "Insulin", "BMI", "Diabetes Pedigree Function"
-                    ],
-                    "Patient Values": [
-                        Pregnancies, Glucose, BloodPressure, SkinThickness, 
-                        Insulin, BMI, DiabetesPedigreeFunction
-                    ],
-                    "Normal Range": [
-                        "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
-                    ],
-                    "Unit": [
-                        "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
-                    ]
-                }
+                        ] ,
+                        "Patient Values": [
+                            Pregnancies, Glucose, BloodPressure, SkinThickness, 
+                            Insulin, BMI, DiabetesPedigreeFunction
+                        ],
+                        "Normal Range": [
+                            "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
+                        ],
+                        "Unit": [
+                            "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
+                        ]
+                    }
 
                 st.table(test_data)
 
