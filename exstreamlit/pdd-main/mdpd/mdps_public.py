@@ -215,10 +215,10 @@ if st.session_state.logged_in:
                         ]
                         }
 
-                st.table(test_data)
+                    st.table(test_data)
 
-                # Email Message
-                st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
+                    # Email Message
+                    st.markdown("ℹ️ **Do check your email for more details, Thank You.**")
 
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
