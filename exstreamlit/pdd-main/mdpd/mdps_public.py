@@ -206,7 +206,7 @@ if st.session_state.logged_in:
             st.markdown(
                 f"""
                 <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
-                    <p style="margin: 0;"><strong>Patient:</strong> {patient_name}</p>
+                    <p style="margin: 0;"><strong>Patient name:</strong> {patient_name}</p>
                     <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
                     <p style="margin: 0;"><strong>Result:</strong> {result}</p>
                 </div>
@@ -269,7 +269,7 @@ if st.session_state.logged_in:
             st.markdown(
                 f"""
                 <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
-                    <p style="margin: 0;"><strong>Patient:</strong> {patient_name}</p>
+                    <p style="margin: 0;"><strong>Patient name:</strong> {patient_name}</p>
                     <p style="margin: 0;"><strong>Age:</strong> {age}</p>
                     <p style="margin: 0;"><strong>Result:</strong> {heart_diagnosis}</p>
                 </div>
@@ -369,7 +369,7 @@ if st.session_state.logged_in:
                 st.markdown(
                 f"""
                 <div style="background-color: #333333; padding: 10px; border-radius: 5px; color: white;">
-                    <p style="margin: 0;"><strong>Patient:</strong> {name}</p>
+                    <p style="margin: 0;"><strong>Patient name:</strong> {name}</p>
                     <p style="margin: 0;"><strong>Age:</strong> {Age}</p>
                     <p style="margin: 0;"><strong>Result:</strong> {result}</p>
                 </div>
