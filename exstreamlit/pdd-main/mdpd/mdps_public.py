@@ -448,13 +448,14 @@ if st.session_state.logged_in:
                         "MDVP:Jitter(Abs)", "MDVP:RAP", "MDVP:PPQ", "Jitter:DDP", "MDVP:Shimmer", 
                         "MDVP:Shimmer(dB)", "Shimmer:APQ3", "Shimmer:APQ5", "MDVP:APQ", "Shimmer:DDA", 
                         "NHR", "HNR", "RPDE", "DFA", "spread1", "spread2", "D2", "PPE"
-                    ],
-                    "Patient Values": 
+                        ],
+                    "Patient Values": [fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
+                      APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE],
                     "Normal Range": [
                         "50-150", "50-160", "50-150", "0-3", "0-2", "0-2", "0-2", "0-2", 
                         "0-1", "0-0.5", "0.1-0.5", "0.1-0.5", "0-1", "0-1", "0.1-0.5", "0.1-0.5", 
                         "0-0.5", "0-0.5", "0-1", "0-2", "0-2", "0-1"
-                    ],
+                        ],
                     "Unit": [
                         "Hz", "Hz", "Hz", "%", "Abs", "No unit", "No unit", "No unit", "No unit", 
                         "dB", "No unit", "No unit", "No unit", "No unit", "No unit", "No unit", "No unit", 
