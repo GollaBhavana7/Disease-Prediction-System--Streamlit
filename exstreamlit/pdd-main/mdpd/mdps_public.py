@@ -420,8 +420,8 @@ if st.session_state.logged_in:
                     parkinsons_prediction = parkinsons_model.predict([user_input])
 
                     # Diagnosis result
-                    parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
-                    st.success(f"Patient: {patient_name}, Age: {Age}, Result: {parkinsons_diagnosis}")
+                    parkinsons_diagnosis = "Positive" if parkinsons_prediction[0] == 1 else "Negative"
+                    st.markdown(f"### Test Result: {parkinsons_diagnosis}")
 
                     # Set the session state to show the report
                     st.session_state.show_report = True
