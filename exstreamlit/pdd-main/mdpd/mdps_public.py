@@ -46,6 +46,8 @@ if "name" not in st.session_state:
     st.session_state.name = None
 if "selected_page" not in st.session_state:
     st.session_state.selected_page = "Home"
+if "show_report" not in st.session_state:
+    st.session_state.show_report = False
 
 # Sidebar for navigation
 with st.sidebar:
@@ -188,34 +190,36 @@ if st.session_state.logged_in:
             if result:
                 # Display test result message
                 st.markdown(f"### Test Result: {result}")
+                # Set session state for showing the report
                 st.session_state.show_report = True
+
         if st.session_state.show_report:
             show_report = st.button("Click here to see Test Report")
             if show_report:
                 # Display detailed test data only after clicking the link
                 st.markdown("#### Patient Information:")
                 st.markdown(f"**Patient Name**: {patient_name}")
-                st.markdown(f"**Age**: {Age}")# Patient Information
-                 
-                    # Tabular Data
-                    test_data = {
-                        "Parameter Name": [
+                st.markdown(f"**Age**: {Age}")  # Patient Information
+
+                # Tabular Data
+                test_data = {
+                    "Parameter Name": [
                         "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness", 
                         "Insulin", "BMI", "Diabetes Pedigree Function"
-                        ] ,
-                        "Patient Values": [
-                            Pregnancies, Glucose, BloodPressure, SkinThickness, 
-                            Insulin, BMI, DiabetesPedigreeFunction
-                        ],
-                        "Normal Range": [
-                            "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
-                        ],
-                        "Unit": [
-                            "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
-                        ]
-                        }
+                    ],
+                    "Patient Values": [
+                        Pregnancies, Glucose, BloodPressure, SkinThickness, 
+                        Insulin, BMI, DiabetesPedigreeFunction
+                    ],
+                    "Normal Range": [
+                        "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
+                    ],
+                    "Unit": [
+                        "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
+                    ]
+                }
 
-                    st.table(test_data)
+                st.table(test_data)
 
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
@@ -235,48 +239,40 @@ if st.session_state.logged_in:
         with col3:
             fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl')
         with col1:
-            restecg = st.number_input('Resting Electrocardiographic results')
+            restecg = st.number_input('Resting Electrocardiographic Results')
         with col2:
-            thalach = st.number_input('Maximum Heart Rate achieved')
+            thalach = st.number_input('Maximum Heart Rate Achieved')
         with col3:
             exang = st.number_input('Exercise Induced Angina')
-        with col1:
-            oldpeak = st.number_input('Depression induced by exercise relative to rest')
-        with col2:
-            slope = st.number_input('Slope of the peak exercise ST segment')
-        with col3:
-            ca = st.number_input('Number of major vessels colored by fluoroscopy')
-        with col1:
-            thal = st.number_input('thalassemia')
-        with col2:
-            patient_name = st.text_input("Patient Name")
 
         if st.button("Heart Disease Test Result"):
-            # Model prediction
+            # Model prediction for heart disease
             try:
-                heart_prediction = heart_disease_model.predict(
-                    [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]]
+                heart_disease_prediction = heart_disease_model.predict(
+                    [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang]]
                 )
-                result = "Positive" if heart_prediction[0] == 1 else "Negative"
+                heart_result = "Positive" if heart_disease_prediction[0] == 1 else "Negative"
             except Exception as e:
                 st.error("Error during prediction. Check your model or input data.")
-                result = None
-
-            if result:
-                # Display Test Result
-                st.markdown(f"### Test Result: {result}")
-                st.markdown("#### [Click here to see Test Report](#)")
-
-                # Patient Information
-                st.markdown(f"""
-                **Patient Name**: {patient_name}    
-                **Age**: {age}
-                """)
+                heart_result = None
+            if heart_result:
+                st.markdown(f"### Test Result: {heart_result}")
+                st.session_state.show_report = True
 
     elif selected == "Parkinson's Prediction":
         st.title("Parkinson's Disease Prediction using ML")
+
+        # Input fields for Parkinson's disease prediction
+        features = [st.number_input(f"Feature {i}") for i in range(1, 23)]
         
-        # Add relevant fields for Parkinson's prediction and processing logic...
-        
-    else:
-        st.warning("Page not recognized.")
+        if st.button("Parkinson's Test Result"):
+            # Model prediction for Parkinson's disease
+            try:
+                parkinsons_prediction = parkinsons_model.predict([features])
+                parkinsons_result = "Positive" if parkinsons_prediction[0] == 1 else "Negative"
+            except Exception as e:
+                st.error("Error during prediction. Check your model or input data.")
+                parkinsons_result = None
+            if parkinsons_result:
+                st.markdown(f"### Test Result: {parkinsons_result}")
+                st.session_state.show_report = True
