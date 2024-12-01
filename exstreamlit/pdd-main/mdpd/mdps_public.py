@@ -404,19 +404,58 @@ if st.session_state.logged_in:
 
         with col4:
             PPE = st.text_input('PPE')
-    
         if st.button("Parkinson's Test Result"):
-            user_input = [fo, fhi, flo, Jitter_percent, Jitter_Abs,
-                          RAP, PPQ, DDP,Shimmer, Shimmer_dB, APQ3, APQ5,
-                          APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
+            # Prepare the user input for prediction
+            try:
+                # Convert inputs to float
+                user_input = [float(x) for x in [
+                    fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
+                    APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]]
 
-            user_input = [float(x) for x in user_input]
+                # Make the prediction
+                parkinsons_prediction = parkinsons_model.predict([user_input])
 
-            parkinsons_prediction = parkinsons_model.predict([user_input])
+                # Interpretation of the result
+                if parkinsons_prediction[0] == 1:
+                    parkinsons_diagnosis = "The person has Parkinson's disease"
+                else:
+                    parkinsons_diagnosis = "The person does not have Parkinson's disease"
 
-            parkinsons_diagnosis = ""
-            if parkinsons_prediction[0] == 1:
-                parkinsons_diagnosis = "The person has Parkinson's disease"
-            else:
-                parkinsons_diagnosis = "The person does not have Parkinson's disease"
+                # Display the result
                 st.success(f"Patient: {patient_name},   Age: {Age},   Result: {parkinsons_diagnosis}")
+                st.session_state.show_report = True  # Set to show detailed report after prediction
+            
+            except Exception as e:
+                st.error(f"An error occurred during prediction: {e}")
+
+        # Show detailed report if button is clicked
+        if st.session_state.show_report:
+            show_report = st.button("Click here to see Test Report")
+            if show_report:
+                # Display patient information and test parameters
+                st.markdown(f"#### Patient Information:")
+                st.markdown(f"**Patient Name**: {patient_name}")
+                st.markdown(f"**Age**: {Age}")
+
+                st.markdown(f"#### Test Parameters and Values:")
+
+                test_data = {
+                    "Parameter Name": [
+                        "MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)", 
+                        "MDVP:Jitter(Abs)", "MDVP:RAP", "MDVP:PPQ", "Jitter:DDP", 
+                        "MDVP:Shimmer", "MDVP:Shimmer(dB)", "Shimmer:APQ3", "Shimmer:APQ5",
+                        "MDVP:APQ", "Shimmer:DDA", "NHR", "HNR", "RPDE", "DFA", "spread1", 
+                        "spread2", "D2", "PPE"
+                    ],
+                    "Patient Values": [
+                        fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
+                        APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE
+                    ],
+                    "Unit": [
+                        "Hz", "Hz", "Hz", "%", "Abs", "", "", "", "", "dB", "", "",
+                        "", "", "", "", "", "", "", "", ""
+                    ]
+                }
+
+                # Display the table using st.table
+                st.table(test_data)
