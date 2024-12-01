@@ -406,9 +406,9 @@ if st.session_state.logged_in:
             PPE = st.text_input('PPE')
         if st.button("Parkinson's Test Result"):
             # Collect input values
-            user_input = [fo, fhi, flo, Jitter_percent, Jitter_Abs,
+            user_input = ([fo, fhi, flo, Jitter_percent, Jitter_Abs,
                           RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
-                          APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
+                          APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE])
 
             # Convert inputs to floats
             try:
