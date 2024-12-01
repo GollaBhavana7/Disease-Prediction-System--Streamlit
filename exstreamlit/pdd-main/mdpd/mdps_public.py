@@ -223,34 +223,53 @@ if st.session_state.logged_in:
 
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
-        
-        # Input fields for heart disease prediction
         col1, col2, col3 = st.columns(3)
+    
         with col1:
             age = st.number_input('Age')
+        
         with col2:
             sex = st.number_input('Sex')
+        
         with col3:
             cp = st.number_input('Chest Pain types')
+        
         with col1:
             trestbps = st.number_input('Resting Blood Pressure')
+        
         with col2:
             chol = st.number_input('Serum Cholestoral in mg/dl')
+        
         with col3:
             fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl')
+        
         with col1:
-            restecg = st.number_input('Resting Electrocardiographic Results')
+            restecg = st.number_input('Resting Electrocardiographic results')
+        
         with col2:
-            thalach = st.number_input('Maximum Heart Rate Achieved')
+            thalach = st.number_input('Maximum Heart Rate achieved')
+        
         with col3:
             exang = st.number_input('Exercise Induced Angina')
+        
+        with col1:
+            oldpeak = st.number_input('ST depression induced by exercise')
+        
+        with col2:
+            slope = st.number_input('Slope of the peak exercise ST segment')
+        
+        with col3:
+            ca = st.number_input('Major vessels colored by flourosopy')
+        
+        with col1:
+            thal = st.number_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect')
 
-        if st.button("Heart Disease Test Result"):
-            # Model prediction for heart disease
+        with col2:
+             patient_name = st.text_input("Patient Name")
+        
+        if st.button('Heart Disease Test Result'):
             try:
-                heart_disease_prediction = heart_disease_model.predict(
-                    [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang]]
-                )
+                heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
                 heart_result = "Positive" if heart_disease_prediction[0] == 1 else "Negative"
             except Exception as e:
                 st.error("Error during prediction. Check your model or input data.")
