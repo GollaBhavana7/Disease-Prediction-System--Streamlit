@@ -332,8 +332,8 @@ if st.session_state.logged_in:
                         
                             # Display the table
                             st.table(test_data)
-        except Exception as e:
-            st.error(f"An error occurred during prediction: {e}")
+            except Exception as e:
+                st.error(f"An error occurred during prediction: {e}")
  
 
     elif selected == "Parkinson's Prediction":
