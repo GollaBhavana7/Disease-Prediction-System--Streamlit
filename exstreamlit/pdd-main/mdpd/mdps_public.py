@@ -449,7 +449,7 @@ if st.session_state.logged_in:
                         "MDVP:Shimmer(dB)", "Shimmer:APQ3", "Shimmer:APQ5", "MDVP:APQ", "Shimmer:DDA", 
                         "NHR", "HNR", "RPDE", "DFA", "spread1", "spread2", "D2", "PPE"
                     ],
-                    "Patient Values": user_input,
+                    "Patient Values": 
                     "Normal Range": [
                         "50-150", "50-160", "50-150", "0-3", "0-2", "0-2", "0-2", "0-2", 
                         "0-1", "0-0.5", "0.1-0.5", "0.1-0.5", "0-1", "0-1", "0.1-0.5", "0.1-0.5", 
