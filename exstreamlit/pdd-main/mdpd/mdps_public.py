@@ -422,7 +422,21 @@ if st.session_state.logged_in:
 
                 st.success(f"Patient: {patient_name}, Age: {Age}, Result: {parkinsons_diagnosis}")
 
-                # Display the detailed report
+                # Set session state for showing the report
+                st.session_state.show_report = True
+
+            except Exception as e:
+                st.error(f"Error during prediction: {e}")
+
+        # Show detailed report if button is clicked
+        if st.session_state.show_report:
+            show_report = st.button("Click here to see Test Report")
+            if show_report:
+                # Patient Information
+                st.markdown(f"#### Patient Information:")
+                st.markdown(f"**Patient Name**: {patient_name}")
+                st.markdown(f"**Age**: {Age}")
+
                 # Define parameter names, normal ranges, and units
                 parameter_names = [
                     "MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)", 
@@ -454,6 +468,3 @@ if st.session_state.logged_in:
 
                 # Display as a table
                 st.table(report_data)
-
-            except Exception as e:
-                st.error(f"Error during prediction: {e}")
