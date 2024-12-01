@@ -267,65 +267,66 @@ if st.session_state.logged_in:
 
         with col2:
              patient_name = st.text_input("Patient Name")
-     
         if st.button('Heart Disease Test Result'):
             try:
                 # Prepare the input data
                 inputs = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
-            
+        
                 # Ensure that no inputs are missing or invalid
                 if any(i is None or i == '' for i in inputs):
                     st.error("Please ensure all fields are filled.")
                 else:
                     # Perform the prediction using the heart disease model
                     heart_prediction = heart_disease_model.predict([inputs])
-                
+            
                     # Interpret the result
                     heart_result = "Positive" if heart_prediction[0] == 1 else "Negative"
                     st.markdown(f"### Test Result: {heart_result}")
-                
+            
                     # Show detailed information in a report
                     st.session_state.show_report = True
-                    if st.session_state.show_report:
-                        show_report = st.button("Click here to see Test Report")
-                        if show_report:
-                            # Patient Information
-                            st.markdown(f"#### Patient Information:")
-                            st.markdown(f"**Patient Name**: {patient_name}")
-                            st.markdown(f"**Age**: {age}")
-                        
-                            # Test Parameters and Values
-                            st.markdown(f"#### Test Parameters and Values:")
-
-                            # Defining parameter names, ranges, and units
-                            test_data = {
-                                "Parameter Name": [
-                                    "Age", "Sex", "Chest Pain Type", "Resting Blood Pressure", 
-                                    "Cholestoral", "Fasting Blood Sugar", "Resting Electrocardiographic", 
-                                    "Max Heart Rate", "Exercise Angina", "ST Depression", 
-                                    "Peak ST Slope", "Major Vessels", "Thalassemia"
-                                ],
-                                "Patient Values": [
-                                    age, 'Female' if sex == 0 else 'Male', cp, trestbps, chol, 
-                                    'Yes' if fbs == 1 else 'No', restecg, thalach, 
-                                    'Yes' if exang == 1 else 'No', oldpeak, slope, ca, thal
-                                ],
-                            "    Normal Range": [
-                                    "1-120", "0 = Female, 1 = Male", "0: Typical Angina, 1: Atypical Angina, 2: Non-Anginal Pain, 3: Asymptomatic",
-                                    "50-200", "100-600", "Yes: >120 mg/dl, No: <=120 mg/dl", "0: Normal, 1: ST-T wave abnormality, 2: Left ventricular hypertrophy",
-                                    "60-220", "0: No, 1: Yes", "0.0-6.0", "0: Upsloping, 1: Flat, 2: Downsloping", "0-3", "0: Normal, 1: Fixed defect, 2: Reversible defect"
-                                ],
-                                "Unit": [
-                                    "Years", "Female/Male", "Type", "mm Hg", "mg/dl", "Yes/No", "Type", 
-                                    "bpm (beats per minute)", "Yes/No", "ST Depression", "Type", "Count", "Type"
-                                ]
-                            }
-                        
-                            # Display the table
-                            st.table(test_data)
             except Exception as e:
                 st.error(f"An error occurred during prediction: {e}")
- 
+
+        # Show detailed report if button is clicked
+        if st.session_state.show_report:
+            show_report = st.button("Click here to see Test Report")
+            if show_report:
+                # Patient Information
+                st.markdown(f"#### Patient Information:")
+                st.markdown(f"**Patient Name**: {patient_name}")
+                st.markdown(f"**Age**: {age}")
+        
+                # Test Parameters and Values
+                st.markdown(f"#### Test Parameters and Values:")
+
+                # Defining parameter names, ranges, and units
+                test_data = {
+                    "Parameter Name": [
+                        "Age", "Sex", "Chest Pain Type", "Resting Blood Pressure", 
+                        "Cholestoral", "Fasting Blood Sugar", "Resting Electrocardiographic", 
+                        "Max Heart Rate", "Exercise Angina", "ST Depression", 
+                        "Peak ST Slope", "Major Vessels", "Thalassemia"
+                    ],
+                    "Patient Values": [
+                        age, 'Female' if sex == 0 else 'Male', cp, trestbps, chol, 
+                        'Yes' if fbs == 1 else 'No', restecg, thalach, 
+                        'Yes' if exang == 1 else 'No', oldpeak, slope, ca, thal
+                    ],
+                    "Normal Range": [
+                        "1-120", "0 = Female, 1 = Male", "0: Typical Angina, 1: Atypical Angina, 2: Non-Anginal Pain, 3: Asymptomatic",
+                        "50-200", "100-600", "Yes: >120 mg/dl, No: <=120 mg/dl", "0: Normal, 1: ST-T wave abnormality, 2: Left ventricular hypertrophy",
+                        "60-220", "0: No, 1: Yes", "0.0-6.0", "0: Upsloping, 1: Flat, 2: Downsloping", "0-3", "0: Normal, 1: Fixed defect, 2: Reversible defect"
+                    ],
+                    "Unit": [
+                        "Years", "Female/Male", "Type", "mm Hg", "mg/dl", "Yes/No", "Type", 
+                        "bpm (beats per minute)", "Yes/No", "ST Depression", "Type", "Count", "Type"
+                    ]
+                }
+        
+                # Display the table using st.table
+                st.table(test_data)
+
 
     elif selected == "Parkinson's Prediction":
         st.title("Parkinson's Disease Prediction using ML")
