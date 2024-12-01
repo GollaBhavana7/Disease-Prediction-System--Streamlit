@@ -189,13 +189,13 @@ if st.session_state.logged_in:
                 # Display test result message
                 st.markdown(f"### Test Result: {result}")
                 st.session_state.show_report = True
-            if st.session_state.show_report:
-                show_report = st.button("Click here to see Test Report")
-                if show_report:
-                    # Display detailed test data only after clicking the link
-                    st.markdown("#### Patient Information:")
-                    st.markdown(f"**Patient Name**: {patient_name}")
-                    st.markdown(f"**Age**: {Age}")# Patient Information
+        if st.session_state.show_report:
+            show_report = st.button("Click here to see Test Report")
+            if show_report:
+                # Display detailed test data only after clicking the link
+                st.markdown("#### Patient Information:")
+                st.markdown(f"**Patient Name**: {patient_name}")
+                st.markdown(f"**Age**: {Age}")# Patient Information
                  
                     # Tabular Data
                     test_data = {
