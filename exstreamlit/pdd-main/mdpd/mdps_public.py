@@ -203,10 +203,10 @@ if st.session_state.logged_in:
 
                 # Tabular Data
                 test_data = {
-                    st.markdown(f"**Parameter Name": [
+                    st.markdown(f"**Parameter Name"): [
                         "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness", 
                         "Insulin", "BMI", "Diabetes Pedigree Function"
-                    ]),
+                    ],
                     "Patient Values": [
                         Pregnancies, Glucose, BloodPressure, SkinThickness, 
                         Insulin, BMI, DiabetesPedigreeFunction
