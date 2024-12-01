@@ -269,14 +269,21 @@ if st.session_state.logged_in:
         
         if st.button('Heart Disease Test Result'):
             try:
-                heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
-                heart_result = "Positive" if heart_disease_prediction[0] == 1 else "Negative"
+                # Ensure all inputs are valid before making the prediction
+                inputs = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
+            
+                # Check if any input is missing or invalid
+                if any(i is None or i == '' for i in inputs):
+                    st.error("Please ensure all fields are filled.")
+                else:
+                    heart_prediction = heart_disease_model.predict([inputs])
+                    heart_result = "Positive" if heart_prediction[0] == 1 else "Negative"
+                    st.markdown(f"### Test Result: {heart_result}")
+                    st.session_state.show_report = True
+            except ValueError as e:
+                st.error(f"Value Error: {e}. Please check your inputs.")
             except Exception as e:
-                st.error("Error during prediction. Check your model or input data.")
-                heart_result = None
-            if heart_result:
-                st.markdown(f"### Test Result: {heart_result}")
-                st.session_state.show_report = True
+                st.error(f"An error occurred during prediction: {e}")
 
     elif selected == "Parkinson's Prediction":
         st.title("Parkinson's Disease Prediction using ML")
