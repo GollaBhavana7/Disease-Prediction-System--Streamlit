@@ -424,34 +424,41 @@ if st.session_state.logged_in:
                 st.success(f"Patient: {patient_name}, Age: {Age}, Result: {parkinsons_diagnosis}")
 
                 # Display the detailed report
-                parameter_names = [
-                    "MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)", 
-                    "MDVP:Jitter(Abs)", "MDVP:RAP", "MDVP:PPQ", "Jitter:DDP", "MDVP:Shimmer", 
-                    "MDVP:Shimmer(dB)", "Shimmer:APQ3", "Shimmer:APQ5", "MDVP:APQ", "Shimmer:DDA", 
-                    "NHR", "HNR", "RPDE", "DFA", "spread1", "spread2", "D2", "PPE"
-                ]
+                if st.session_state.show_report:
+                    show_report = st.button("Click here to see Test Report")
+                    if show_report:
+                        # Patient Information
+                        st.markdown(f"#### Patient Information:")
+                        st.markdown(f"**Patient Name**: {patient_name}")
+                        st.markdown(f"**Age**: {Age}")
+                        parameter_names = [
+                            "MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)", 
+                            "MDVP:Jitter(Abs)", "MDVP:RAP", "MDVP:PPQ", "Jitter:DDP", "MDVP:Shimmer", 
+                            "MDVP:Shimmer(dB)", "Shimmer:APQ3", "Shimmer:APQ5", "MDVP:APQ", "Shimmer:DDA", 
+                            "NHR", "HNR", "RPDE", "DFA", "spread1", "spread2", "D2", "PPE"
+                            ]
 
-                normal_ranges = [
-                    "50-150", "50-160", "50-150", "0-3", "0-2", "0-2", "0-2", "0-2", 
-                    "0-1", "0-0.5", "0.1-0.5", "0.1-0.5", "0-1", "0-1", "0.1-0.5", "0.1-0.5", 
-                    "0-0.5", "0-0.5", "0-1", "0-2", "0-2", "0-1"
-                ]
+                        normal_ranges = [
+                                "50-150", "50-160", "50-150", "0-3", "0-2", "0-2", "0-2", "0-2", 
+                                "0-1", "0-0.5", "0.1-0.5", "0.1-0.5", "0-1", "0-1", "0.1-0.5", "0.1-0.5", 
+                                "0-0.5", "0-0.5", "0-1", "0-2", "0-2", "0-1"
+                            ]
 
-                units = [
-                    "Hz", "Hz", "Hz", "%", "Abs", "No unit", "No unit", "No unit", "No unit", 
-                    "dB", "No unit", "No unit", "No unit", "No unit", "No unit", "No unit", "No unit", 
-                    "No unit", "No unit", "No unit", "No unit", "No unit"
-                ]
+                        units = [
+                            "Hz", "Hz", "Hz", "%", "Abs", "No unit", "No unit", "No unit", "No unit", 
+                            "dB", "No unit", "No unit", "No unit", "No unit", "No unit", "No unit", "No unit", 
+                            "No unit", "No unit", "No unit", "No unit", "No unit"
+                        ]
 
-                # Organize data into a dictionary for easy display
-                report_data = {
-                    "Parameter Name": parameter_names,
-                    "Patient Values": user_input,
-                    "Normal Range": normal_ranges,
-                    "Unit": units
-                }
-                # Display as a table
-                st.table(report_data)
+                        # Organize data into a dictionary for easy display
+                        report_data = {
+                            "Parameter Name": parameter_names,
+                            "Patient Values": user_input,
+                            "Normal Range": normal_ranges,
+                            "Unit": units
+                        }
+                        # Display as a table
+                        st.table(report_data)
 
             except Exception as e:
                 st.error(f"Error during prediction: {e}")
