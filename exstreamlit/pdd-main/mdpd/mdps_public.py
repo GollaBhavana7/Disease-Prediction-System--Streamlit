@@ -337,7 +337,7 @@ if st.session_state.logged_in:
             patient_name = st.text_input("Patient Name")
 
         with col2:
-            Age = st.number_input("Age of the Person", min_value=0)
+            Age = st.text_input("Age of the Person", min_value=0)
     
         with col3:
             fo = st.text_input('MDVP:Fo(Hz)')
