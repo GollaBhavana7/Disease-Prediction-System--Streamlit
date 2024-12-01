@@ -218,7 +218,7 @@ if st.session_state.logged_in:
                         "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
                     ]
                 }
-                print(f"{BOLD}{COLOR_HEADER}Test Results:{RESET}")
+                print(f"{BOLD}{COLOR_HEADER}test_data:{RESET}")
 
                 st.table(test_data)
 
