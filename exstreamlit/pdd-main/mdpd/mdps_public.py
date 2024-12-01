@@ -224,59 +224,50 @@ if st.session_state.logged_in:
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
     
-        # Creating columns for better layout
         col1, col2, col3 = st.columns(3)
     
         with col1:
-            age = st.number_input('Age', min_value=1, max_value=120)
-    
+            age = st.number_input('Age')
+        
         with col2:
-            sex = st.selectbox('Sex', options=[0, 1], format_func=lambda x: 'Female' if x == 0 else 'Male')
-    
+            sex = st.number_input('Sex')
+        
         with col3:
-            cp = st.selectbox('Chest Pain Type', options=[0, 1, 2, 3], format_func=lambda x: {
-                0: "Typical Angina", 1: "Atypical Angina", 2: "Non-Anginal Pain", 3: "Asymptomatic"
-            }[x])
-    
+            cp = st.number_input('Chest Pain types')
+        
         with col1:
-            trestbps = st.number_input('Resting Blood Pressure (mm Hg)', min_value=50, max_value=200)
-    
+            trestbps = st.number_input('Resting Blood Pressure')
+        
         with col2:
-            chol = st.number_input('Serum Cholestoral in mg/dl', min_value=100, max_value=600)
-    
+            chol = st.number_input('Serum Cholestoral in mg/dl')
+        
         with col3:
-            fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl', options=[0, 1], format_func=lambda x: 'Yes' if x == 1 else 'No')
-    
+            fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl')
+        
         with col1:
-            restecg = st.selectbox('Resting Electrocardiographic Results', options=[0, 1, 2], format_func=lambda x: {
-                0: "Normal", 1: "ST-T wave abnormality", 2: "Left ventricular hypertrophy"
-            }[x])
-    
+            restecg = st.number_input('Resting Electrocardiographic results')
+        
         with col2:
-            thalach = st.number_input('Maximum Heart Rate Achieved', min_value=60, max_value=220)
-    
+            thalach = st.number_input('Maximum Heart Rate achieved')
+        
         with col3:
-            exang = st.selectbox('Exercise Induced Angina', options=[0, 1], format_func=lambda x: 'No' if x == 0 else 'Yes')
-    
+            exang = st.number_input('Exercise Induced Angina')
+        
         with col1:
-            oldpeak = st.number_input('ST Depression Induced by Exercise', min_value=0.0, max_value=6.0, step=0.1)
-    
+            oldpeak = st.number_input('ST depression induced by exercise')
+        
         with col2:
-            slope = st.selectbox('Slope of Peak Exercise ST Segment', options=[0, 1, 2], format_func=lambda x: {
-                0: "Upsloping", 1: "Flat", 2: "Downsloping"
-            }[x])
-    
+            slope = st.number_input('Slope of the peak exercise ST segment')
+        
         with col3:
-            ca = st.selectbox('Major Vessels Colored by Fluoroscopy', options=[0, 1, 2, 3], format_func=lambda x: str(x))
-    
+            ca = st.number_input('Major vessels colored by flourosopy')
+        
         with col1:
-            thal = st.selectbox('Thalassemia (0 = normal; 1 = fixed defect; 2 = reversible defect)', options=[0, 1, 2], format_func=lambda x: {
-                0: "Normal", 1: "Fixed defect", 2: "Reversible defect"
-            }[x])
-    
+            thal = st.number_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect')
+
         with col2:
-            patient_name = st.text_input("Patient Name")
-    
+             patient_name = st.text_input("Patient Name")
+     
         if st.button('Heart Disease Test Result'):
             try:
                 # Prepare the input data
