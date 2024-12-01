@@ -340,70 +340,70 @@ if st.session_state.logged_in:
             Age = st.number_input("Age of the Person", min_value=0)
 
         with col3:
-            fo = st.number_input('MDVP:Fo(Hz)')
+            fo = st.text_input('MDVP:Fo(Hz)')
 
         with col4:
-            fhi = st.number_input('MDVP:Fhi(Hz)')
+            fhi = st.text_input('MDVP:Fhi(Hz)')
 
         with col5:
-            flo = st.number_input('MDVP:Flo(Hz)')
+            flo = st.text_input('MDVP:Flo(Hz)')
 
         with col1:
-            Jitter_percent = st.number_input('MDVP:Jitter(%)')
+            Jitter_percent = st.text_input('MDVP:Jitter(%)')
 
         with col2:
-            Jitter_Abs = st.number_input('MDVP:Jitter(Abs)')
+            Jitter_Abs = st.text_input('MDVP:Jitter(Abs)')
 
         with col3:
-            RAP = st.number_input('MDVP:RAP')
+            RAP = st.text_input('MDVP:RAP')
 
         with col4:
             PPQ = st.number_input('MDVP:PPQ')
 
         with col5:
-            DDP = st.number_input('Jitter:DDP')
+            DDP = st.text_input('Jitter:DDP')
 
         with col1:
-            Shimmer = st.number_input('MDVP:Shimmer')
+            Shimmer = st.text_input('MDVP:Shimmer')
 
         with col2:
-            Shimmer_dB = st.number_input('MDVP:Shimmer(dB)')
+            Shimmer_dB = st.text_input('MDVP:Shimmer(dB)')
 
         with col3:
-            APQ3 = st.number_input('Shimmer:APQ3')
+            APQ3 = st.text_input('Shimmer:APQ3')
 
         with col4:
-            APQ5 = st.number_input('Shimmer:APQ5')
+            APQ5 = st.text_input('Shimmer:APQ5')
 
         with col5:
-            APQ = st.number_input('MDVP:APQ')
+            APQ = st.text_input('MDVP:APQ')
 
         with col1:
-            DDA = st.number_input('Shimmer:DDA')
+            DDA = st.text_input('Shimmer:DDA')
 
         with col2:
-            NHR = st.number_input('NHR')
+            NHR = st.text_input('NHR')
 
         with col3:
-            HNR = st.number_input('HNR')
+            HNR = st.text_input('HNR')
 
         with col4:
-            RPDE = st.number_input('RPDE')
+            RPDE = st.text_input('RPDE')
 
         with col5:
-            DFA = st.number_input('DFA')
+            DFA = st.text_input('DFA')
 
         with col1:
-            spread1 = st.number_input('spread1')
+            spread1 = st.text_input('spread1')
 
         with col2:
-            spread2 = st.number_input('spread2')
+            spread2 = st.text_input('spread2')
 
         with col3:
-            D2 = st.number_input('D2')
+            D2 = st.text_input('D2')
 
         with col4:
-            PPE = st.number_input('PPE')
+            PPE = st.text_input('PPE')
 
         # Define the button to trigger prediction
         if st.button("Parkinson's Test Result"):
