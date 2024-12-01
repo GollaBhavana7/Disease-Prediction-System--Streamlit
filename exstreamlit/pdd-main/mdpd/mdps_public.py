@@ -338,7 +338,7 @@ if st.session_state.logged_in:
 
         with col2:
             Age = st.number_input("Age of the Person", min_value=0)
-    
+
         with col3:
             fo = st.number_input('MDVP:Fo(Hz)')
 
@@ -405,23 +405,26 @@ if st.session_state.logged_in:
         with col4:
             PPE = st.number_input('PPE')
 
+        # Define the button to trigger prediction
         if st.button("Parkinson's Test Result"):
             # Collect input values
-            user_input = [fo, fhi, flo, Jitter_percent, Jitter_Abs,RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
-                APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
+            user_input = [fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
+                      APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
+
             try:
-                # Convert inputs to float, if input is empty or invalid, set it to 0
-                user_input = [float(x) if x else 0.0 for x in user_input]
+                # Ensure that all user inputs are valid (not empty or None)
+                if any(i is None or i == '' for i in user_input):
+                    st.error("Please ensure all fields are filled.")
+                else:
+                    # Make prediction using the model
+                    parkinsons_prediction = parkinsons_model.predict([user_input])
 
-                # Make prediction using the model
-                parkinsons_prediction = parkinsons_model.predict([user_input])
+                    # Diagnosis result
+                    parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
+                    st.success(f"Patient: {patient_name}, Age: {Age}, Result: {parkinsons_diagnosis}")
 
-                # Diagnosis result
-                parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
-                st.success(f"Patient: {patient_name}, Age: {Age}, Result: {parkinsons_diagnosis}")
-
-                # Set the session state to show the report
-                st.session_state.show_report = True
+                    # Set the session state to show the report
+                    st.session_state.show_report = True
 
             except Exception as e:
                 st.error(f"Error during prediction: {e}")
@@ -434,7 +437,7 @@ if st.session_state.logged_in:
                 st.markdown(f"#### Patient Information:")
                 st.markdown(f"**Patient Name**: {patient_name}")
                 st.markdown(f"**Age**: {Age}")
-            
+
                 # Test Parameters and Values
                 st.markdown(f"#### Test Parameters and Values:")
 
