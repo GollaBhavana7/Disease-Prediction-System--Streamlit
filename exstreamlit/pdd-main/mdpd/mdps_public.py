@@ -407,12 +407,8 @@ if st.session_state.logged_in:
 
         if st.button("Parkinson's Test Result"):
             # Collect input values
-            user_input = [
-                fo, fhi, flo, Jitter_percent, Jitter_Abs,
-                RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
-                APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE
-            ]
-
+            user_input = [fo, fhi, flo, Jitter_percent, Jitter_Abs,RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
+                APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
             try:
                 # Convert inputs to float, if input is empty or invalid, set it to 0
                 user_input = [float(x) if x else 0.0 for x in user_input]
