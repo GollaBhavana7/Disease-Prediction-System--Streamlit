@@ -450,6 +450,8 @@ if st.session_state.logged_in:
                     "Normal Range": normal_ranges,
                     "Unit": units
                 }
+                # Display as a table
+                st.table(report_data)
 
-        # Display as a table
-        st.table(report_data)
+            except Exception as e:
+                st.error(f"Error during prediction: {e}")
