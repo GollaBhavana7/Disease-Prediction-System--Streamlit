@@ -405,57 +405,55 @@ if st.session_state.logged_in:
         with col4:
             PPE = st.text_input('PPE')
         if st.button("Parkinson's Test Result"):
-            # Prepare the user input for prediction
-            try:
-                # Convert inputs to float
-                user_input = [float(x) for x in [
-                    fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
-                    APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]]
+            # Collect input values
+            user_input = [fo, fhi, flo, Jitter_percent, Jitter_Abs,
+                          RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
+                          APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
 
-                # Make the prediction
+            # Convert inputs to floats
+            try:
+                user_input = [float(x) if x else 0.0 for x in user_input]
+
+                # Make prediction using the model
                 parkinsons_prediction = parkinsons_model.predict([user_input])
 
-                # Interpretation of the result
-                if parkinsons_prediction[0] == 1:
-                    parkinsons_diagnosis = "The person has Parkinson's disease"
-                else:
-                    parkinsons_diagnosis = "The person does not have Parkinson's disease"
+                # Diagnosis result
+                parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
 
-                # Display the result
-                st.success(f"Patient: {patient_name},   Age: {Age},   Result: {parkinsons_diagnosis}")
-                st.session_state.show_report = True  # Set to show detailed report after prediction
-            
-            except Exception as e:
-                st.error(f"An error occurred during prediction: {e}")
+                st.success(f"Patient: {patient_name}, Age: {Age}, Result: {parkinsons_diagnosis}")
 
-        # Show detailed report if button is clicked
-        if st.session_state.show_report:
-            show_report = st.button("Click here to see Test Report")
-            if show_report:
-                # Display patient information and test parameters
-                st.markdown(f"#### Patient Information:")
-                st.markdown(f"**Patient Name**: {patient_name}")
-                st.markdown(f"**Age**: {Age}")
+                # Display the detailed report
+                # Define parameter names, normal ranges, and units
+                parameter_names = [
+                    "MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)", 
+                    "MDVP:Jitter(Abs)", "MDVP:RAP", "MDVP:PPQ", "Jitter:DDP", "MDVP:Shimmer", 
+                    "MDVP:Shimmer(dB)", "Shimmer:APQ3", "Shimmer:APQ5", "MDVP:APQ", "Shimmer:DDA", 
+                    "NHR", "HNR", "RPDE", "DFA", "spread1", "spread2", "D2", "PPE"
+                ]
 
-                st.markdown(f"#### Test Parameters and Values:")
+                # Placeholder for the normal ranges and units
+                normal_ranges = [
+                    "50-150", "50-160", "50-150", "0-3", "0-2", "0-2", "0-2", "0-2", 
+                    "0-1", "0-0.5", "0.1-0.5", "0.1-0.5", "0-1", "0-1", "0.1-0.5", "0.1-0.5", 
+                    "0-0.5", "0-0.5", "0-1", "0-2", "0-2", "0-1"
+                ]
 
-                test_data = {
-                    "Parameter Name": [
-                        "MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)", 
-                        "MDVP:Jitter(Abs)", "MDVP:RAP", "MDVP:PPQ", "Jitter:DDP", 
-                        "MDVP:Shimmer", "MDVP:Shimmer(dB)", "Shimmer:APQ3", "Shimmer:APQ5",
-                        "MDVP:APQ", "Shimmer:DDA", "NHR", "HNR", "RPDE", "DFA", "spread1", 
-                        "spread2", "D2", "PPE"
-                    ],
-                    "Patient Values": [
-                        fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5,
-                        APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE
-                    ],
-                    "Unit": [
-                        "Hz", "Hz", "Hz", "%", "Abs", "", "", "", "", "dB", "", "",
-                        "", "", "", "", "", "", "", "", ""
-                    ]
+                units = [
+                    "Hz", "Hz", "Hz", "%", "Abs", "No unit", "No unit", "No unit", "No unit", 
+                    "dB", "No unit", "No unit", "No unit", "No unit", "No unit", "No unit", "No unit", 
+                    "No unit", "No unit", "No unit", "No unit", "No unit"
+                ]
+
+                # Organize data into a dictionary for easy display
+                report_data = {
+                    "Parameter Name": parameter_names,
+                    "Patient Values": user_input,
+                    "Normal Range": normal_ranges,
+                    "Unit": units
                 }
 
-                # Display the table using st.table
-                st.table(test_data)
+                # Display as a table
+                st.table(report_data)
+
+            except Exception as e:
+                st.error(f"Error during prediction: {e}")
