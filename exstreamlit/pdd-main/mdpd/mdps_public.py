@@ -223,67 +223,118 @@ if st.session_state.logged_in:
 
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
+    
+        # Creating columns for better layout
         col1, col2, col3 = st.columns(3)
     
         with col1:
-            age = st.number_input('Age')
-        
+            age = st.number_input('Age', min_value=1, max_value=120)
+    
         with col2:
-            sex = st.number_input('Sex')
-        
+            sex = st.selectbox('Sex', options=[0, 1], format_func=lambda x: 'Female' if x == 0 else 'Male')
+    
         with col3:
-            cp = st.number_input('Chest Pain types')
-        
+            cp = st.selectbox('Chest Pain Type', options=[0, 1, 2, 3], format_func=lambda x: {
+                0: "Typical Angina", 1: "Atypical Angina", 2: "Non-Anginal Pain", 3: "Asymptomatic"
+            }[x])
+    
         with col1:
-            trestbps = st.number_input('Resting Blood Pressure')
-        
+            trestbps = st.number_input('Resting Blood Pressure (mm Hg)', min_value=50, max_value=200)
+    
         with col2:
-            chol = st.number_input('Serum Cholestoral in mg/dl')
-        
+            chol = st.number_input('Serum Cholestoral in mg/dl', min_value=100, max_value=600)
+    
         with col3:
-            fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl')
-        
+            fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl', options=[0, 1], format_func=lambda x: 'Yes' if x == 1 else 'No')
+    
         with col1:
-            restecg = st.number_input('Resting Electrocardiographic results')
-        
+            restecg = st.selectbox('Resting Electrocardiographic Results', options=[0, 1, 2], format_func=lambda x: {
+                0: "Normal", 1: "ST-T wave abnormality", 2: "Left ventricular hypertrophy"
+            }[x])
+    
         with col2:
-            thalach = st.number_input('Maximum Heart Rate achieved')
-        
+            thalach = st.number_input('Maximum Heart Rate Achieved', min_value=60, max_value=220)
+    
         with col3:
-            exang = st.number_input('Exercise Induced Angina')
-        
+            exang = st.selectbox('Exercise Induced Angina', options=[0, 1], format_func=lambda x: 'No' if x == 0 else 'Yes')
+    
         with col1:
-            oldpeak = st.number_input('ST depression induced by exercise')
-        
+            oldpeak = st.number_input('ST Depression Induced by Exercise', min_value=0.0, max_value=6.0, step=0.1)
+    
         with col2:
-            slope = st.number_input('Slope of the peak exercise ST segment')
-        
+            slope = st.selectbox('Slope of Peak Exercise ST Segment', options=[0, 1, 2], format_func=lambda x: {
+                0: "Upsloping", 1: "Flat", 2: "Downsloping"
+            }[x])
+    
         with col3:
-            ca = st.number_input('Major vessels colored by flourosopy')
-        
+            ca = st.selectbox('Major Vessels Colored by Fluoroscopy', options=[0, 1, 2, 3], format_func=lambda x: str(x))
+    
         with col1:
-            thal = st.number_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect')
-
+            thal = st.selectbox('Thalassemia (0 = normal; 1 = fixed defect; 2 = reversible defect)', options=[0, 1, 2], format_func=lambda x: {
+                0: "Normal", 1: "Fixed defect", 2: "Reversible defect"
+            }[x])
+    
         with col2:
-             patient_name = st.text_input("Patient Name")
-        
+            patient_name = st.text_input("Patient Name")
+    
         if st.button('Heart Disease Test Result'):
             try:
-                # Ensure all inputs are valid before making the prediction
+                # Prepare the input data
                 inputs = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
             
-                # Check if any input is missing or invalid
+                # Ensure that no inputs are missing or invalid
                 if any(i is None or i == '' for i in inputs):
                     st.error("Please ensure all fields are filled.")
                 else:
+                    # Perform the prediction using the heart disease model
                     heart_prediction = heart_disease_model.predict([inputs])
+                
+                    # Interpret the result
                     heart_result = "Positive" if heart_prediction[0] == 1 else "Negative"
                     st.markdown(f"### Test Result: {heart_result}")
+                
+                    # Show detailed information in a report
                     st.session_state.show_report = True
-            except ValueError as e:
-                st.error(f"Value Error: {e}. Please check your inputs.")
-            except Exception as e:
-                st.error(f"An error occurred during prediction: {e}")
+                    if st.session_state.show_report:
+                        show_report = st.button("Click here to see Test Report")
+                        if show_report:
+                            # Patient Information
+                            st.markdown(f"#### Patient Information:")
+                            st.markdown(f"**Patient Name**: {patient_name}")
+                            st.markdown(f"**Age**: {age}")
+                        
+                            # Test Parameters and Values
+                            st.markdown(f"#### Test Parameters and Values:")
+
+                            # Defining parameter names, ranges, and units
+                            test_data = {
+                                "Parameter Name": [
+                                    "Age", "Sex", "Chest Pain Type", "Resting Blood Pressure", 
+                                    "Cholestoral", "Fasting Blood Sugar", "Resting Electrocardiographic", 
+                                    "Max Heart Rate", "Exercise Angina", "ST Depression", 
+                                    "Peak ST Slope", "Major Vessels", "Thalassemia"
+                                ],
+                                "Patient Values": [
+                                    age, 'Female' if sex == 0 else 'Male', cp, trestbps, chol, 
+                                    'Yes' if fbs == 1 else 'No', restecg, thalach, 
+                                    'Yes' if exang == 1 else 'No', oldpeak, slope, ca, thal
+                                ],
+                            "    Normal Range": [
+                                    "1-120", "0 = Female, 1 = Male", "0: Typical Angina, 1: Atypical Angina, 2: Non-Anginal Pain, 3: Asymptomatic",
+                                    "50-200", "100-600", "Yes: >120 mg/dl, No: <=120 mg/dl", "0: Normal, 1: ST-T wave abnormality, 2: Left ventricular hypertrophy",
+                                    "60-220", "0: No, 1: Yes", "0.0-6.0", "0: Upsloping, 1: Flat, 2: Downsloping", "0-3", "0: Normal, 1: Fixed defect, 2: Reversible defect"
+                                ],
+                                "Unit": [
+                                    "Years", "Female/Male", "Type", "mm Hg", "mg/dl", "Yes/No", "Type", 
+                                    "bpm (beats per minute)", "Yes/No", "ST Depression", "Type", "Count", "Type"
+                                ]
+                            }
+                        
+                            # Display the table
+                            st.table(test_data)
+        except Exception as e:
+            st.error(f"An error occurred during prediction: {e}")
+ 
 
     elif selected == "Parkinson's Prediction":
         st.title("Parkinson's Disease Prediction using ML")
