@@ -357,7 +357,7 @@ if st.session_state.logged_in:
             RAP = st.text_input('MDVP:RAP')
 
         with col4:
-            PPQ = st.number_input('MDVP:PPQ')
+            PPQ = st.text_input('MDVP:PPQ')
 
         with col5:
             DDP = st.text_input('Jitter:DDP')
