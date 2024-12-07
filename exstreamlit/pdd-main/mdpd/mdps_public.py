@@ -174,10 +174,24 @@ if st.session_state.logged_in:
         with col2:
             st.subheader("Diabetes")
             st.write("**Symptoms:**")
-            st.write("""Increased thirst, Frequent urination, Extreme hunger, Unexplained weight loss, Presence of ketones in the urine, Fatigue,Irritability, Blurred vision
+            st.write("""
+            - Chest pain or discomfort
+            - Shortness of breath
+            - Pain in the neck, back, jaw, stomach, or shoulder
+            - Nausea, lightheadedness, or cold sweat
+            - Pain in one or both arms
+            - Fatigue
             """)
             st.write("**Causes:**")
-            st.write("""Insulin resistance (Type 2 Diabetes), Genetic factors, Age, with risk increasing after 45 years old, Lack of physical activity, Poor diet (high in sugar and unhealthy fats), Obesity
+            st.write("""
+            - High blood pressure
+            - High cholesterol
+            - Smoking
+            - Lack of physical activity
+            - Obesity
+            - Diabetes
+            - Family history of heart disease
+            - Excessive alcohol consumption
             """)
             st.write("**Prevention:**")
             st.write("""
