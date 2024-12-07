@@ -69,7 +69,7 @@ with st.sidebar:
                 "Feedback",
                 "Logout",
             ],
-            icons=["house", "activity", "heart", "person", "envelope", box-arrow-right"],
+            icons=["house", "activity", "heart", "person", "envelope", "box-arrow-right"],
             default_index=0,
         )
 
