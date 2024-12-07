@@ -162,6 +162,29 @@ if st.session_state.logged_in:
             Select a disease prediction option from the sidebar to get started.
             """
         )
+        # Display clickable images for each disease, linking to their prediction pages
+        st.markdown("""
+        ### Click on an image to go to the respective disease prediction page:
+        """)
+    
+        col1, col2, col3 = st.columns(3)
+    
+        with col1:
+            st.markdown(
+                f'<a href="/Diabetes Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/sugar-blood-level.png" width="150"></a>',
+                unsafe_allow_html=True
+            )
+        with col2:
+            st.markdown(
+                f'<a href="/Heart Disease Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/heart-disease.png" width="150"></a>',
+                unsafe_allow_html=True
+            )
+        with col3:
+            st.markdown(
+                f'<a href="/Parkinson\'s Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/parkinsons%20icon.png" width="150"></a>',
+                unsafe_allow_html=True
+            )
+
     
     elif selected == "Diabetes Prediction":
         st.title("Diabetes Prediction using ML")
