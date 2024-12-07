@@ -254,30 +254,30 @@ if st.session_state.logged_in:
         - Protecting the head from injury
         """)
     
-        # Add clickable images for each disease to go to the respective prediction pages
+        # Add disease names as clickable links to prediction pages
         st.markdown("""
-        ### Click on an image to go to the respective disease prediction page:
+        ### Click on a disease name to go to the respective disease prediction page:
         """)
     
         col1, col2, col3 = st.columns(3)
     
         with col1:
             st.markdown(
-                f'<a href="/Diabetes Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/sugar-blood-level.png" width="150"></a>',
+                f'<a href="/Diabetes Prediction"><button style="background-color: #4CAF50; color: white; padding: 10px 20px; font-size: 16px; border-radius: 5px; border: none;">Diabetes Prediction</button></a>',
                 unsafe_allow_html=True
             )
         with col2:
             st.markdown(
-                f'<a href="/Heart Disease Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/heart-disease.png" width="150"></a>',
+                f'<a href="/Heart Disease Prediction"><button style="background-color: #FF5733; color: white; padding: 10px 20px; font-size: 16px; border-radius: 5px; border: none;">Heart Disease Prediction</button></a>',
                 unsafe_allow_html=True
             )
         with col3:
             st.markdown(
-                f'<a href="/Parkinson\'s Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/parkinsons%20icon.png" width="150"></a>',
+                f'<a href="/Parkinson\'s Prediction"><button style="background-color: #6A5ACD; color: white; padding: 10px 20px; font-size: 16px; border-radius: 5px; border: none;">Parkinson\'s Prediction</button></a>',
                 unsafe_allow_html=True
             )
-
     
+        
     elif selected == "Diabetes Prediction":
         st.title("Diabetes Prediction using ML")
 
