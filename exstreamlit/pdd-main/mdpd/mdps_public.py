@@ -156,128 +156,38 @@ if st.session_state.logged_in:
         st.write(
             """
             This application uses machine learning to predict the likelihood of the following diseases:
-            - **Diabetes**
-            - **Heart Disease**
-            - **Parkinson's Disease**
-            
+            - Diabetes
+            - Heart Disease
+            - Parkinson's Disease
+    
             Select a disease prediction option from the sidebar to get started.
             """
         )
     
-        # Add descriptions about each disease with their symptoms, causes, and prevention
-        st.write("### Disease Information:")
-    
-        # Diabetes Information
-        st.write("#### Diabetes")
-        st.write("""
-        **Symptoms:**
-        - Increased thirst
-        - Frequent urination
-        - Extreme hunger
-        - Unexplained weight loss
-        - Presence of ketones in the urine
-        - Fatigue
-        - Irritability
-        - Blurred vision
-    
-        **Causes:**
-        - Insulin resistance (Type 2 Diabetes)
-        - Genetic factors
-        - Age, with risk increasing after 45 years old
-        - Lack of physical activity
-        - Poor diet (high in sugar and unhealthy fats)
-        - Obesity
-    
-        **Prevention:**
-        - Maintaining a healthy weight
-        - Eating a balanced diet rich in fruits, vegetables, and whole grains
-        - Regular physical activity
-        - Avoiding excessive alcohol and tobacco use
-        - Monitoring blood sugar levels, especially for those at risk
-        """)
-    
-        # Heart Disease Information
-        st.write("#### Heart Disease")
-        st.write("""
-        **Symptoms:**
-        - Chest pain or discomfort
-        - Shortness of breath
-        - Pain in the neck, back, jaw, stomach, or shoulder
-        - Nausea, lightheadedness, or cold sweat
-        - Pain in one or both arms
-        - Fatigue
-    
-        **Causes:**
-        - High blood pressure
-        - High cholesterol
-        - Smoking
-        - Lack of physical activity
-        - Obesity
-        - Diabetes
-        - Family history of heart disease
-        - Excessive alcohol consumption
-    
-        **Prevention:**
-        - Keeping a healthy weight
-        - Eating a diet low in saturated fats, cholesterol, and sodium
-        - Getting regular exercise
-        - Avoiding smoking
-        - Limiting alcohol intake
-        - Managing stress effectively
-        - Monitoring blood pressure and cholesterol levels
-        """)
-    
-        # Parkinson's Disease Information
-        st.write("#### Parkinson's Disease")
-        st.write("""
-        **Symptoms:**
-        - Tremors (shaking), often in hands or fingers
-        - Muscle stiffness
-        - Slowness of movement (bradykinesia)
-        - Impaired posture and balance
-        - Difficulty walking
-        - Speech changes (soft or slurred voice)
-        - Writing changes (small handwriting)
-        - Decreased sense of smell
-    
-        **Causes:**
-        - Loss of dopamine-producing brain cells
-        - Genetic mutations (rare, but some forms of Parkinson's disease run in families)
-        - Environmental factors, such as exposure to toxins or head injuries
-        - Age, typically affecting those over 60
-        - Gender, with men being more likely to develop Parkinson's than women
-    
-        **Prevention:**
-        - Regular physical exercise, especially aerobic exercises
-        - Healthy diet, rich in antioxidants and vitamins
-        - Avoiding exposure to toxins (such as pesticides or heavy metals)
-        - Protecting the head from injury
-        """)
-    
-        # Add disease names as clickable links to prediction pages
+        # Display clickable images for each disease, linking to their prediction pages
         st.markdown("""
-        ### Click on a disease name to go to the respective disease prediction page:
+        ### Click on an image to go to the respective disease prediction page:
         """)
     
         col1, col2, col3 = st.columns(3)
     
         with col1:
             st.markdown(
-                f'<a href="/Diabetes Prediction"><button style="background-color: #4CAF50; color: white; padding: 10px 20px; font-size: 16px; border-radius: 5px; border: none;">Diabetes Prediction</button></a>',
+                f'<a href="/Diabetes Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/sugar-blood-level.png" width="150"></a>',
                 unsafe_allow_html=True
             )
         with col2:
             st.markdown(
-                f'<a href="/Heart Disease Prediction"><button style="background-color: #FF5733; color: white; padding: 10px 20px; font-size: 16px; border-radius: 5px; border: none;">Heart Disease Prediction</button></a>',
+                f'<a href="/Heart Disease Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/heart-disease.png" width="150"></a>',
                 unsafe_allow_html=True
             )
         with col3:
             st.markdown(
-                f'<a href="/Parkinson\'s Prediction"><button style="background-color: #6A5ACD; color: white; padding: 10px 20px; font-size: 16px; border-radius: 5px; border: none;">Parkinson\'s Prediction</button></a>',
+                f'<a href="/Parkinson\'s Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/parkinsons%20icon.png" width="150"></a>',
                 unsafe_allow_html=True
             )
     
-        
+            
     elif selected == "Diabetes Prediction":
         st.title("Diabetes Prediction using ML")
 
