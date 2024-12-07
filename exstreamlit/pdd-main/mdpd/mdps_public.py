@@ -150,7 +150,7 @@ elif selected == "Login":
 
 # Disease Prediction Pages (visible after successful login)
 if st.session_state.logged_in:
-     # Home Page
+    # Home Page
     if selected == "Home":
         st.title("Welcome to Predictive Disease Detection App")
         st.write(
