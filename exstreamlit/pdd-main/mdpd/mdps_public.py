@@ -177,13 +177,7 @@ if st.session_state.logged_in:
             st.write("""Increased thirst, Frequent urination, Extreme hunger, Unexplained weight loss, Presence of ketones in the urine, Fatigue,Irritability, Blurred vision
             """)
             st.write("**Causes:**")
-            st.write("""
-            - Insulin resistance (Type 2 Diabetes)
-            - Genetic factors
-            - Age, with risk increasing after 45 years old
-            - Lack of physical activity
-            - Poor diet (high in sugar and unhealthy fats)
-            - Obesity
+            st.write("""Insulin resistance (Type 2 Diabetes), Genetic factors, Age, with risk increasing after 45 years old, Lack of physical activity, Poor diet (high in sugar and unhealthy fats), Obesity
             """)
             st.write("**Prevention:**")
             st.write("""
