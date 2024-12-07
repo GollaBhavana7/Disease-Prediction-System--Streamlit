@@ -66,9 +66,10 @@ with st.sidebar:
                 "Diabetes Prediction",
                 "Heart Disease Prediction",
                 "Parkinson's Prediction",
+                "Feedback",
                 "Logout",
             ],
-            icons=["house", "activity", "heart", "person", "box-arrow-right"],
+            icons=["house", "activity", "heart", "person", "envelope", box-arrow-right"],
             default_index=0,
         )
 
@@ -147,6 +148,20 @@ elif selected == "Login":
             st.success("Login successful!")
         else:
             st.error("Invalid email or password. Please try again.")
+elif selected == "Feedback":
+    st.title("Feedback Page")
+
+    # Feedback form fields
+    feedback_name = st.text_input("Your Name")
+    feedback_email = st.text_input("Your Email")
+    feedback_message = st.text_area("Your Feedback", height=150)
+
+    if st.button("Submit Feedback"):
+        if feedback_name and feedback_email and feedback_message:
+            # Here you can add code to save the feedback to a database or send it via email
+            st.success("Thank you for your feedback!")
+        else:
+            st.error("Please fill in all fields before submitting.")
 
 # Disease Prediction Pages (visible after successful login)
 if st.session_state.logged_in:
@@ -600,44 +615,4 @@ if st.session_state.logged_in:
 
                 # Display the table using st.table
                 st.table(test_data)
-    # Add Feedback Page to the Sidebar
-    elif selected == "Feedback":
-        st.title("Feedback Page")
     
-        # Feedback form fields
-        feedback_name = st.text_input("Your Name")
-        feedback_email = st.text_input("Your Email")
-        feedback_message = st.text_area("Your Feedback", height=150)
-    
-        if st.button("Submit Feedback"):
-            if feedback_name and feedback_email and feedback_message:
-                # Here you can add code to save the feedback to a database or send it via email
-                st.success("Thank you for your feedback!")
-            else:
-                st.error("Please fill in all fields before submitting.")
-    
-    # Update the sidebar options to include Feedback
-    with st.sidebar:
-        if not st.session_state.logged_in:
-            selected = option_menu(
-                "Predictive Disease Detection App",
-                ["Login", "Signup", "Feedback"],  # Added Feedback here
-                icons=["key", "person-plus", "envelope"],
-                default_index=0,
-            )
-        else:
-            selected = option_menu(
-                "Predictive Disease Detection App",
-                [
-                    "Home",
-                    "Diabetes Prediction",
-                    "Heart Disease Prediction",
-                    "Parkinson's Prediction",
-                    "Feedback",  # Added Feedback here
-                    "Logout",
-                ],
-                icons=["house", "activity", "heart", "person", "envelope", "box-arrow-right"],
-                default_index=0,
-            )
-                    
-            
