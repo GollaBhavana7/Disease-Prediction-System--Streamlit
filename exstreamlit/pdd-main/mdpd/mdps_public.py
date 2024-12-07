@@ -174,15 +174,7 @@ if st.session_state.logged_in:
         with col2:
             st.subheader("Diabetes")
             st.write("**Symptoms:**")
-            st.write("""
-            - Increased thirst
-            - Frequent urination
-            - Extreme hunger
-            - Unexplained weight loss
-            - Presence of ketones in the urine
-            - Fatigue
-            - Irritability
-            - Blurred vision
+            st.write("""Increased thirst,Frequent urination,Extreme hunger,Unexplained weight loss, Presence of ketones in the urine,Fatigue,Irritability, Blurred vision
             """)
             st.write("**Causes:**")
             st.write("""
