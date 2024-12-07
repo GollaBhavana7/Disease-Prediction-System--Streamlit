@@ -150,43 +150,130 @@ elif selected == "Login":
 
 # Disease Prediction Pages (visible after successful login)
 if st.session_state.logged_in:
-    # Home Page
     if selected == "Home":
         st.title("Welcome to Predictive Disease Detection App")
         st.write(
             """
             This application uses machine learning to predict the likelihood of the following diseases:
-            - Diabetes
-            - Heart Disease
-            - Parkinson's Disease
-    
+            - **Diabetes**
+            - **Heart Disease**
+            - **Parkinson's Disease**
+            
             Select a disease prediction option from the sidebar to get started.
             """
         )
     
-        # Display clickable images for each disease, linking to their prediction pages
-        st.markdown("""
-        ### Click on an image to go to the respective disease prediction page:
-        """)
+        # Create columns for each disease
+        st.write("### Disease Information:")
     
-        col1, col2, col3 = st.columns(3)
-    
+        # Columns for Diabetes Disease
+        col1, col2 = st.columns([1, 3])
+        
         with col1:
-            st.markdown(
-                f'<a href="/Diabetes Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/sugar-blood-level.png" width="150"></a>',
-                unsafe_allow_html=True
-            )
+            st.image("https://github.com/GollaBhavana7/exstreamlit/blob/main/exstreamlit/pdd-main/mdpd/images/sugar-blood-level.png?raw=true", width=150)  # Image for Diabetes
         with col2:
-            st.markdown(
-                f'<a href="/Heart Disease Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/heart-disease.png" width="150"></a>',
-                unsafe_allow_html=True
-            )
-        with col3:
-            st.markdown(
-                f'<a href="/Parkinson\'s Prediction"><img src="https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/parkinsons%20icon.png" width="150"></a>',
-                unsafe_allow_html=True
-            )
+            st.subheader("Diabetes")
+            st.write("**Symptoms:**")
+            st.write("""
+            - Increased thirst
+            - Frequent urination
+            - Extreme hunger
+            - Unexplained weight loss
+            - Presence of ketones in the urine
+            - Fatigue
+            - Irritability
+            - Blurred vision
+            """)
+            st.write("**Causes:**")
+            st.write("""
+            - Insulin resistance (Type 2 Diabetes)
+            - Genetic factors
+            - Age, with risk increasing after 45 years old
+            - Lack of physical activity
+            - Poor diet (high in sugar and unhealthy fats)
+            - Obesity
+            """)
+            st.write("**Prevention:**")
+            st.write("""
+            - Maintaining a healthy weight
+            - Eating a balanced diet rich in fruits, vegetables, and whole grains
+            - Regular physical activity
+            - Avoiding excessive alcohol and tobacco use
+            - Monitoring blood sugar levels, especially for those at risk
+            """)
     
+        # Columns for Heart Disease
+        col1, col2 = st.columns([1, 3])
+        
+        with col1:
+            st.image("https://github.com/GollaBhavana7/exstreamlit/blob/main/exstreamlit/pdd-main/mdpd/images/heart-disease.png?raw=true", width=150)  # Image for Heart Disease
+        with col2:
+            st.subheader("Heart Disease")
+            st.write("**Symptoms:**")
+            st.write("""
+            - Chest pain or discomfort
+            - Shortness of breath
+            - Pain in the neck, back, jaw, stomach, or shoulder
+            - Nausea, lightheadedness, or cold sweat
+            - Pain in one or both arms
+            - Fatigue
+            """)
+            st.write("**Causes:**")
+            st.write("""
+            - High blood pressure
+            - High cholesterol
+            - Smoking
+            - Lack of physical activity
+            - Obesity
+            - Diabetes
+            - Family history of heart disease
+            - Excessive alcohol consumption
+            """)
+            st.write("**Prevention:**")
+            st.write("""
+            - Keeping a healthy weight
+            - Eating a diet low in saturated fats, cholesterol, and sodium
+            - Getting regular exercise
+            - Avoiding smoking
+            - Limiting alcohol intake
+            - Managing stress effectively
+            - Monitoring blood pressure and cholesterol levels
+            """)
+    
+        # Columns for Parkinson's Disease
+        col1, col2 = st.columns([1, 3])
+        
+        with col1:
+            st.image("https://github.com/GollaBhavana7/exstreamlit/blob/main/exstreamlit/pdd-main/mdpd/images/parkinsons%20icon.png?raw=true", width=150)  # Image for Parkinson's Disease
+        with col2:
+            st.subheader("Parkinson's Disease")
+            st.write("**Symptoms:**")
+            st.write("""
+            - Tremors (shaking), often in hands or fingers
+            - Muscle stiffness
+            - Slowness of movement (bradykinesia)
+            - Impaired posture and balance
+            - Difficulty walking
+            - Speech changes (soft or slurred voice)
+            - Writing changes (small handwriting)
+            - Decreased sense of smell
+            """)
+            st.write("**Causes:**")
+            st.write("""
+            - Loss of dopamine-producing brain cells
+            - Genetic mutations (rare, but some forms of Parkinson's disease run in families)
+            - Environmental factors, such as exposure to toxins or head injuries
+            - Age, typically affecting those over 60
+            - Gender, with men being more likely to develop Parkinson's than women
+            """)
+            st.write("**Prevention:**")
+            st.write("""
+            - Regular physical exercise, especially aerobic exercises
+            - Healthy diet, rich in antioxidants and vitamins
+            - Avoiding exposure to toxins (such as pesticides or heavy metals)
+            - Protecting the head from injury
+            """)
+
             
     elif selected == "Diabetes Prediction":
         st.title("Diabetes Prediction using ML")
