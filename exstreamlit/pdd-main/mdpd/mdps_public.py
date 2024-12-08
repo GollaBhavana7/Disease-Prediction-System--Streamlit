@@ -303,18 +303,14 @@ if st.session_state.logged_in:
         You can interact with the sidebar options to choose the disease and input the necessary information for prediction.
         """)
     
-        # Provide a button for easy navigation to disease prediction page
-        if st.button('Start Disease Prediction'):
-            st.write("Redirecting to the prediction page...")
-            # Here you can set a redirect to another page or show a form (example: predict_disease())
+         st.markdown("---")
+         st.markdown("### Contact Information")
+         st.markdown("For any queries or support, please reach out to us at:")
+         st.markdown("- **Phone**: +91 7569325090")
+         st.markdown("- **Email**: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
+         st.markdown("---")
+
     
-        st.write("---")  # A horizontal line for separation
-    
-        # More interactive elements or styling can be added below
-        st.markdown("""
-        #### Stay informed, stay healthy!
-        Learn more about preventive care and be proactive with your health.
-        """)
                 
     elif selected == "Diabetes Prediction":
         st.title("Diabetes Prediction using ML")
