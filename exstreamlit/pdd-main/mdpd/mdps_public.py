@@ -302,13 +302,12 @@ if st.session_state.logged_in:
         Once you've selected a disease, you can enter your data to predict the likelihood of developing the disease.
         You can interact with the sidebar options to choose the disease and input the necessary information for prediction.
         """)
-    
-         st.markdown("---")
-         st.markdown("### Contact Information")
-         st.markdown("For any queries or support, please reach out to us at:")
-         st.markdown("- **Phone**: +91 7569325090")
-         st.markdown("- **Email**: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
-         st.markdown("---")
+        st.markdown("---")
+        st.markdown("### Contact Information")
+        st.markdown("For any queries or support, please reach out to us at:")
+        st.markdown("- **Phone**: +91 7569325090")
+        st.markdown("- **Email**: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
+        st.markdown("---")
 
     
                 
