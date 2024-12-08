@@ -2,6 +2,8 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 import re
+import json 
+import os
 
 # Load saved models
 diabetes_model = pickle.load(open('exstreamlit/pdd-main/mdpd/diabetes_model.sav', 'rb'))
@@ -36,13 +38,84 @@ def signup(name, email, password):
     # Save user details in the "database"
     users_db[email] = {"name": name, "password": password}
     return True
-def save_feedback(name, email, message):
-    feedback_id = len(feedbacks_db) + 1  # Generate unique feedback ID
-    feedbacks_db[feedback_id] = {
-        "name": name,
-        "email": email,
-        "message": message,
+import streamlit as st
+import json
+import os
+
+# Path to the JSON file where feedback will be stored
+feedback_file = "feedbacks.json"
+
+# Function to load feedbacks from the JSON file
+def load_feedbacks():
+    if os.path.exists(feedback_file):
+        with open(feedback_file, "r") as f:
+            return json.load(f)
+    else:
+        return {}
+
+# Function to save feedbacks to the JSON file
+def save_feedback(feedback_name, feedback_email, feedback_message):
+    feedbacks = load_feedbacks()
+
+    # Generate a unique ID for each feedback
+    feedback_id = str(len(feedbacks) + 1)
+
+    feedbacks[feedback_id] = {
+        "name": feedback_name,
+        "email": feedback_email,
+        "message": feedback_message,
     }
+
+    # Save the feedbacks dictionary to the JSON file
+    with open(feedback_file, "w") as f:
+        json.dump(feedbacks, f, indent=4)
+
+# Create the Streamlit app interface
+st.title("Feedback System")
+
+# Sidebar for navigation
+menu = ["Home", "Feedback", "View Feedback"]
+selected = st.sidebar.radio("Select an option", menu)
+
+# Simple login mechanism for admin to view feedback
+if selected == "Home":
+    st.header("Welcome to the Feedback System")
+    st.write("You can submit feedback or view submitted feedbacks.")
+
+# Feedback Page - To save feedback
+elif selected == "Feedback":
+    st.title("Feedback Page")
+
+    # Feedback form fields
+    feedback_name = st.text_input("Your Name")
+    feedback_email = st.text_input("Your Email")
+    feedback_message = st.text_area("Your Feedback", height=150)
+
+    if st.button("Submit Feedback"):
+        if feedback_name and feedback_email and feedback_message:
+            # Save feedback to the JSON file
+            save_feedback(feedback_name, feedback_email, feedback_message)
+            st.success("Thank you for your feedback!")
+        else:
+            st.error("Please fill in all fields before submitting.")
+
+# View Feedback Page - To display saved feedbacks
+elif selected == "View Feedback":
+    st.title("View Feedbacks")
+
+    # Load feedbacks from the JSON file
+    feedbacks = load_feedbacks()
+
+    if len(feedbacks) == 0:
+        st.info("No feedbacks submitted yet.")
+    else:
+        for feedback_id, feedback_data in feedbacks.items():
+            st.subheader(f"Feedback #{feedback_id}")
+            st.write(f"**Name**: {feedback_data['name']}")
+            st.write(f"**Email**: {feedback_data['email']}")
+            st.write(f"**Message**: {feedback_data['message']}")
+            st.markdown("---")  # Separator for feedbacks
+
 
 # Initialize session state variables
 if "logged_in" not in st.session_state:
