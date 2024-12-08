@@ -36,6 +36,13 @@ def signup(name, email, password):
     # Save user details in the "database"
     users_db[email] = {"name": name, "password": password}
     return True
+def save_feedback(name, email, message):
+    feedback_id = len(feedbacks_db) + 1  # Generate unique feedback ID
+    feedbacks_db[feedback_id] = {
+        "name": name,
+        "email": email,
+        "message": message,
+    }
 
 # Initialize session state variables
 if "logged_in" not in st.session_state:
