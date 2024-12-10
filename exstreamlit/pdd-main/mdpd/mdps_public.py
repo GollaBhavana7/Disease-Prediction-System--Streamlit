@@ -169,6 +169,7 @@ elif selected == "Feedback and Contact":
     st.markdown("For any queries or support, please reach out to us at:")
     st.markdown("- **Phone**: +91 7569325090")
     st.markdown("- **Email**: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
+    st.markdown("- **Email**: [punithajajam@gmail.com](mailto:punithajajam@gmail.com@gmail.com)")
     st.markdown("- **Email**: [buradarohit18@gmail.com](mailto:buradarohit18@gmail.com)")
     st.markdown("---")
         
