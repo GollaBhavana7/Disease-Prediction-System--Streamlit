@@ -165,11 +165,12 @@ elif selected == "Feedback and Contact":
         else:
             st.error("Please fill in all fields before submitting.")
     st.markdown("---")
-        st.markdown("### Contact Information")
-        st.markdown("For any queries or support, please reach out to us at:")
-        st.markdown("- **Phone**: +91 7569325090")
-        st.markdown("- **Email**: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
-        st.markdown("---")
+    st.markdown("### Contact Information")
+    st.markdown("For any queries or support, please reach out to us at:")
+    st.markdown("- **Phone**: +91 7569325090")
+    st.markdown("- **Email**: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
+    st.markdown("---")
+        
 
 # Disease Prediction Pages (visible after successful login)
 if st.session_state.logged_in:
