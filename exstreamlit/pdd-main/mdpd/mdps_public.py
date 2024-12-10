@@ -68,7 +68,7 @@ with st.sidebar:
                 "Diabetes Prediction",
                 "Heart Disease Prediction",
                 "Parkinson's Prediction",
-                "Feedback",
+                "Feedback and Contact",
                 "Logout",
             ],
             icons=["house", "activity", "heart", "person", "envelope", "box-arrow-right"],
@@ -150,7 +150,7 @@ elif selected == "Login":
             st.success("Login successful!")
         else:
             st.error("Invalid email or password. Please try again.")
-elif selected == "Feedback":
+elif selected == "Feedback and Contact":
     st.title("Feedback Page")
 
     # Feedback form fields
@@ -164,6 +164,12 @@ elif selected == "Feedback":
             st.success("Thank you for your feedback!")
         else:
             st.error("Please fill in all fields before submitting.")
+    st.markdown("---")
+        st.markdown("### Contact Information")
+        st.markdown("For any queries or support, please reach out to us at:")
+        st.markdown("- **Phone**: +91 7569325090")
+        st.markdown("- **Email**: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
+        st.markdown("---")
 
 # Disease Prediction Pages (visible after successful login)
 if st.session_state.logged_in:
@@ -302,14 +308,6 @@ if st.session_state.logged_in:
         Once you've selected a disease, you can enter your data to predict the likelihood of developing the disease.
         You can interact with the sidebar options to choose the disease and input the necessary information for prediction.
         """)
-        st.markdown("---")
-        st.markdown("### Contact Information")
-        st.markdown("For any queries or support, please reach out to us at:")
-        st.markdown("- **Phone**: +91 7569325090")
-        st.markdown("- **Email**: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
-        st.markdown("---")
-
-    
                 
     elif selected == "Diabetes Prediction":
         st.title("Diabetes Prediction using ML")
