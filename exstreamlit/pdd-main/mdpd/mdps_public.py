@@ -308,7 +308,7 @@ if st.session_state.logged_in:
         # Interactive Information for Disease Prediction (Placeholder)
         st.subheader("Disease Prediction")
         st.write("""
-        Once you've selected a disease, you can enter your data to predict the likelihood of developing the disease.
+        Once you've selected a disease, you can enter your data to predict the likelihood of developing the disease.Ensure you are entering the data corretly.
         You can interact with the sidebar options to choose the disease and input the necessary information for prediction.
         """)
                 
