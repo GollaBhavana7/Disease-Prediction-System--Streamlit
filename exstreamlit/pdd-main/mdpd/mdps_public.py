@@ -314,42 +314,43 @@ if st.session_state.logged_in:
                 
     elif selected == "Diabetes Prediction":
         st.title("Diabetes Prediction using ML")
-
-        # Input fields
-        patient_name = st.text_input("Patient Name")
-        Pregnancies = st.number_input("Number of Pregnancies", min_value=0)
-        Glucose = st.number_input("Glucose Level", min_value=0)
-        BloodPressure = st.number_input("Blood Pressure value", min_value=0)
-        SkinThickness = st.number_input("Skin Thickness value", min_value=0)
-        Insulin = st.number_input("Insulin Level", min_value=0)
-        BMI = st.number_input("BMI value", min_value=0.0, format="%.2f")
-        DiabetesPedigreeFunction = st.number_input("Diabetes Pedigree Function value", min_value=0.0, format="%.2f")
-        Age = st.number_input("Age of the Person", min_value=0)
         
+        # Create an expander to group input fields
+        with st.expander("Enter Patient Details", expanded=True):
+            patient_name = st.text_input("Patient Name", placeholder="Enter the full name of the patient")
+            
+            # Group inputs into columns for better layout
+            col1, col2 = st.columns(2)
+            with col1:
+                Pregnancies = st.number_input("Number of Pregnancies", min_value=0, step=1, help="Number of times the patient has been pregnant.")
+                Glucose = st.number_input("Glucose Level (mg/dL)", min_value=0, step=1, help="Patient's glucose level.")
+                BloodPressure = st.number_input("Blood Pressure (mmHg)", min_value=0, step=1, help="Patient's blood pressure value.")
+                SkinThickness = st.number_input("Skin Thickness (mm)", min_value=0, step=1, help="Skin fold thickness value.")
+            with col2:
+                Insulin = st.number_input("Insulin Level (mIU/L)", min_value=0, step=1, help="Insulin level in the blood.")
+                BMI = st.number_input("BMI (kg/m²)", min_value=0.0, format="%.1f", help="Body Mass Index.")
+                DiabetesPedigreeFunction = st.number_input("Diabetes Pedigree Function", min_value=0.0, format="%.3f", help="Family history of diabetes.")
+                Age = st.number_input("Age", min_value=0, step=1, help="Age of the patient.")
+        
+        # Add a button for prediction
         if st.button("Diabetes Test Result"):
-            # Model prediction
             try:
                 diab_prediction = diabetes_model.predict(
                     [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
                 )
                 result = "Positive" if diab_prediction[0] == 1 else "Negative"
-            except Exception as e:
-                st.error("Error during prediction. Check your model or input data.")
-                result = None
-            if result:
-                # Display test result message
-                st.markdown(f"### Test Result: {result}")
-                # Set session state for showing the report
+                st.success(f"Prediction Complete: The result is *{result}*.")
                 st.session_state.show_report = True
-
+            except Exception as e:
+                st.error(f"Error during prediction: {e}")
+        
+        # Display report if available
         if st.session_state.show_report:
-            show_report = st.button("Click here to see Test Report")
-            if show_report:
-                # Display detailed test data only after clicking the link
-                st.markdown("#### Patient Information:")
-                st.markdown(f"**Patient Name**: {patient_name}")
-                st.markdown(f"**Age**: {Age}")  # Patient Information
-
+            with st.expander("Click to view Test Report"):
+                st.markdown(f"#### Patient Information")
+                st.markdown(f"*Patient Name*: {patient_name}")
+                st.markdown(f"*Age*: {Age}")
+                
                 # Tabular Data
                 test_data = {
                     "Parameter Name": [
@@ -364,7 +365,7 @@ if st.session_state.logged_in:
                         "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
                     ],
                     "Unit": [
-                        "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
+                        "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m²", "No units"
                     ]
                 }
                 st.table(test_data)
