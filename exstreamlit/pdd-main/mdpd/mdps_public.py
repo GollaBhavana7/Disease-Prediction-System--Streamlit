@@ -2,42 +2,54 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 import re
+import sqlite3
+
+# Initialize the SQLite database
+def init_db():
+    conn = sqlite3.connect("users.db")
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT UNIQUE,
+        password TEXT
+    )''')
+    conn.commit()
+    conn.close()
+
+# Add a new user
+def add_user(name, email, password):
+    conn = sqlite3.connect("users.db")
+    c = conn.cursor()
+    try:
+        c.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (name, email, password))
+        conn.commit()
+        return True
+    except sqlite3.IntegrityError:
+        return False
+    finally:
+        conn.close()
+
+# Authenticate user
+def authenticate_user(email, password):
+    conn = sqlite3.connect("users.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
+    user = c.fetchone()
+    conn.close()
+    return user is not None
+
+# Initialize the database
+init_db()
 
 # Load saved models
-diabetes_model = pickle.load(open('exstreamlit/pdd-main/mdpd/diabetes_model.sav', 'rb'))
-heart_disease_model = pickle.load(open('exstreamlit/pdd-main/mdpd/heart_disease_model.sav', 'rb'))
-parkinsons_model = pickle.load(open('exstreamlit/pdd-main/mdpd/parkinsons_model.sav', 'rb'))
+diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
+heart_disease_model = pickle.load(open('heart_disease_model.sav', 'rb'))
+parkinsons_model = pickle.load(open('parkinsons_model.sav', 'rb'))
 
-# Dictionary to store user data temporarily
-users_db = {}
-
-# Function to validate email format (checks for basic email structure and @gmail.com)
 def validate_email(email):
     email = email.strip().lower()
-    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-        return False
-    if not email.endswith("@gmail.com"):
-        return False
-    return True
-
-# Function to authenticate login
-def authenticate(email, password):
-    email = email.strip().lower()
-    if email in users_db and users_db[email]["password"] == password:
-        return True
-    else:
-        return False
-
-# Function to register a new user (Signup)
-def signup(name, email, password):
-    email = email.strip().lower()
-    if email in users_db:
-        return False  # Email already exists
-    # Save user details in the "database"
-    users_db[email] = {"name": name, "password": password}
-    return True
- 
-
+    return re.match(r"[^@]+@[^@]+\.[^@]+", email) and email.endswith("@gmail.com")
 
 # Initialize session state variables
 if "logged_in" not in st.session_state:
@@ -86,12 +98,20 @@ if selected == "Logout":
 
 # Set background images based on selected page
 background_images = {
-    "Diabetes Prediction": 'https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/diabeties_background.jpg',
-    "Heart Disease Prediction": 'https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg',
-    "Parkinson's Prediction": 'https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg'
+    "Diabetes Prediction": 'https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/diabeties_background.jpg?raw=true',
+    "Heart Disease Prediction": 'https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg?raw=true',
+    "Parkinson's Prediction": 'https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg?raw=true'
 }
 
 if selected in background_images:
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("{background_images[selected]}");
+            background-size: cover;
+            background-position: center;
+        }}
     st.markdown(
     """
     <style>
@@ -100,7 +120,6 @@ if selected in background_images:
                           url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/default_background.jpg');
         background-size: cover;
         background-position: center;
-        font-family: Arial, sans-serif;
     }
     .stMarkdown, .stText, h1, h2, h3, h4, h5, h6, p, label {
         color: #333333 !important; /* Dark text */
@@ -121,31 +140,34 @@ if selected in background_images:
     """,
     unsafe_allow_html=True,
 )
- 
+
+     
+
+
+    
+
 # Signup Page
 if selected == "Signup":
     st.title("Signup Page")
 
-    # Signup form fields
     name = st.text_input("Full Name")
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     confirm_password = st.text_input("Confirm Password", type="password")
 
     if st.button("Create Account"):
-        # Validate email and password
         if not validate_email(email):
             st.error("Please enter a valid Gmail address (e.g., example@gmail.com).")
         elif password != confirm_password:
             st.error("Passwords do not match. Please try again.")
-        elif signup(name, email, password):
+        elif add_user(name, email, password):
             st.success(f"Account created successfully for {name}!")
             st.session_state.logged_in = True
             st.session_state.user = email
             st.session_state.name = name
-            st.session_state.selected_page = "Home"
         else:
             st.error("This email is already registered. Please login.")
+
 
 # Login Page
 elif selected == "Login":
@@ -156,17 +178,16 @@ elif selected == "Login":
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
-        # Validate email and password
         if not validate_email(email):
             st.error("Please enter a valid Gmail address (e.g., example@gmail.com).")
-        elif authenticate(email, password):
+        elif authenticate_user(email, password):
             st.session_state.logged_in = True
             st.session_state.user = email
-            st.session_state.name = users_db[email]["name"]
-            st.session_state.selected_page = "Home"
+            st.session_state.name = email.split("@")[0]
             st.success("Login successful!")
         else:
             st.error("Invalid email or password. Please try again.")
+ 
 elif selected == "Feedback and Contact":
     st.title("Feedback Page")
 
