@@ -112,6 +112,11 @@ if selected in background_images:
             background-size: cover;
             background-position: center;
         }}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
     st.markdown(
     """
     <style>
