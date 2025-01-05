@@ -108,43 +108,31 @@ if selected in background_images:
         f"""
         <style>
         .stApp {{
-            background-image: url("{background_images[selected]}");
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                              url("{background_images[selected]}");
             background-size: cover;
             background-position: center;
         }}
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+        .stMarkdown, .stText, h1, h2, h3, h4, h5, h6, p, label {{
+            color: #333333 !important; /* Dark text */
+            font-weight: 600; /* Bold text */
+            font-size: 18px !important; /* Increased font size */
+        }}
+        .stButton>button {{
+            background-color: #0056b3 !important; /* Button background */
+            color: white !important; /* Button text */
+            border-radius: 8px !important; /* Rounded corners */
+            font-size: 16px !important; /* Button font size */
+        }}
+        .stTable {{
+            border: 2px solid #ccc !important; /* Table border */
+            border-radius: 10px !important; /* Rounded table corners */
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    st.markdown(
-    """
-    <style>
-    .stApp {
-        background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-                          url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/default_background.jpg');
-        background-size: cover;
-        background-position: center;
-    }
-    .stMarkdown, .stText, h1, h2, h3, h4, h5, h6, p, label {
-        color: #333333 !important; /* Dark text */
-        font-weight: 600; /* Bold text */
-        font-size: 18px !important; /* Increased font size */
-    }
-    .stButton>button {
-        background-color: #0056b3 !important; /* Button background */
-        color: white !important; /* Button text */
-        border-radius: 8px !important; /* Rounded corners */
-        font-size: 16px !important; /* Button font size */
-    }
-    .stTable {
-        border: 2px solid #ccc !important; /* Table border */
-        border-radius: 10px !important; /* Rounded table corners */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 
      
 
