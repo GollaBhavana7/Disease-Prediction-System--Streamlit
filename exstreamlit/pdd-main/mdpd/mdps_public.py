@@ -113,6 +113,12 @@ if selected in background_images:
         background-size: cover;
         background-position: center;
     }}
+    h1 {{
+            font-size: 50px !important; /* Bigger size for h1 headings */
+            color: black !important; /* Optional: Change heading color */
+            font-weight: bold !important; /* Optional: Make it bold */
+            text-align: center !important; /* Optional: Center align heading */
+        }}
     .stMarkdown, .stText, h1, h2, h3, h4, h5, h6, p, label {{
         color: #333333 !important; /* Dark text */
         font-weight: 600; /* Bold text */
