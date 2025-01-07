@@ -135,45 +135,20 @@ elif selected == "Parkinson's Prediction":
     </style>
     """, unsafe_allow_html=True
 )
-
- 
 if selected in background_images:
     st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-                          url("{background_images[selected]}");
-        background-size: cover;
-        background-position: center;
-    }}
-    .stMarkdown, .stText, h1, h2, h3, h4, h5, h6, p, label {{
-        color: #333333 !important; /* Dark text */
-        font-weight: 600; /* Bold text */
-        font-size: 18px !important; /* Increased font size */
-    }}
-    .stButton>button {{
-        background-color: white !important; /* Button background to white */
-        color: black !important; /* Button text color to black */
-        border: 2px solid black !important; /* Optional border for contrast */
-        border-radius: 8px !important; /* Rounded corners */
-        font-size: 16px !important; /* Button font size */
-        padding: 0.5em 1em !important; /* Adjust padding for better appearance */
-        transition: background-color 0.3s, color 0.3s; /* Add a hover effect */
-    }}
-    .stButton>button:hover {{
-        background-color: #f0f0f0 !important; /* Hover background color (light gray) */
-        color: black !important; /* Hover text color */
-    }}
-    .stTable {{
-        border: 2px solid #ccc !important; /* Table border */
-        border-radius: 10px !important; /* Rounded table corners */
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-    
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("{background_images[selected]}");
+            background-size: cover;
+            background-position: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 # Signup Page
 if selected == "Signup":
