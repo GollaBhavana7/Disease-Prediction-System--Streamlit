@@ -114,8 +114,8 @@ if selected in background_images:
         background-position: center;
     }}
     h1 {{
-            font-size: 30px !important; /* Bigger size for h1 headings */
-            color: red !important; /* Optional: Change heading color */
+            font-size: 70px !important; /* Bigger size for h1 headings */
+            color: darkblue !important; /* Optional: Change heading color */
             font-weight: bold !important; /* Optional: Make it bold */
             text-align: center !important; /* Optional: Center align heading */
         }}
