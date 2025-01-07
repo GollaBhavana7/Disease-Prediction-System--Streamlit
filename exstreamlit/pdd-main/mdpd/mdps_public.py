@@ -97,11 +97,45 @@ if selected == "Logout":
     st.stop()
 
 # Set background images based on selected page
-background_images = {
-    "Diabetes Prediction": 'https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/diabeties_background.jpg?raw=true',
-    "Heart Disease Prediction": 'https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg?raw=true',
-    "Parkinson's Prediction": 'https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg?raw=true'
-}
+if selected == "Diabetes Prediction":
+    st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/diabeties_background.jpg');
+        background-size: cover;
+        background-position: center;
+    }}
+    </style>
+    """, unsafe_allow_html=True
+)
+
+elif selected == "Heart Disease Prediction":
+    st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/heart_disease_background.jpg');
+        background-size: cover;
+        background-position: center;
+    }}
+    </style>
+    """, unsafe_allow_html=True
+)
+
+elif selected == "Parkinson's Prediction":
+    st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url('https://raw.githubusercontent.com/GollaBhavana7/exstreamlit/main/exstreamlit/pdd-main/mdpd/images/parkinsons_background.jpg');
+        background-size: cover;
+        background-position: center;
+    }}
+    </style>
+    """, unsafe_allow_html=True
+)
+
  
 if selected in background_images:
     st.markdown(
