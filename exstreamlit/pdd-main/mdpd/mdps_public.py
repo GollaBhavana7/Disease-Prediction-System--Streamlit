@@ -116,7 +116,7 @@ if selected in background_images:
     .stMarkdown, .stText, h1, h2, h3, h4, h5, h6, p, label {{
         color: #333333 !important; /* Dark text */
         font-weight: 600; /* Bold text */
-        font-size: 40px !important; /* Increased font size */
+        font-size: 18px !important; /* Increased font size */
     }}
     .stButton>button {{
         background-color: white !important; /* Button background to white */
