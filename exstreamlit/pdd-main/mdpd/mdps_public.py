@@ -108,7 +108,7 @@ if selected in background_images:
     f"""
     <style>
     .stApp {{
-        background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+        background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
                           url("{background_images[selected]}");
         background-size: cover;
         background-position: center;
