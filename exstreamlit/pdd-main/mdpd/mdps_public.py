@@ -398,7 +398,23 @@ if st.session_state.logged_in:
                         "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
                     ]
                 }
-                st.table(test_data)
+                # Convert test_data to a DataFrame
+                df = pd.DataFrame(test_data)
+                
+                # Style the DataFrame
+                styled_df = df.style.set_table_styles([
+                    {"selector": "thead", "props": [("background-color", "#4CAF50"), ("color", "white"), ("font-weight", "bold"), ("text-align", "center")]},
+                    {"selector": "tbody", "props": [("color", "black"), ("font-weight", "bold"), ("text-align", "center")]},
+                    {"selector": "tbody tr:nth-child(even)", "props": [("background-color", "#f9f9f9")]},
+                    {"selector": "tbody tr:hover", "props": [("background-color", "#e0f7fa")]}  # Highlight on hover
+                ])
+                
+                # Display the styled DataFrame
+                st.dataframe(
+                    styled_df,
+                    use_container_width=True
+                )
+
 
 
     elif selected == "Heart Disease Prediction":
