@@ -513,8 +513,9 @@ if st.session_state.logged_in:
                         "bpm (beats per minute)", "Yes/No", "ST Depression", "Type", "Count", "Type"
                     ]
                 }
-        
+                # Convert to DataFrame
                 df = pd.DataFrame(test_data)
+        
                 # Style the DataFrame
                 styled_df = df.style.set_table_styles([
                     {"selector": "thead", "props": [("background-color", "#4CAF50"), ("color", "white"), ("font-weight", "bold"), ("text-align", "center")]},
@@ -522,13 +523,12 @@ if st.session_state.logged_in:
                     {"selector": "tbody tr:nth-child(even)", "props": [("background-color", "#f9f9f9")]},
                     {"selector": "tbody tr:hover", "props": [("background-color", "#e0f7fa")]}  # Highlight on hover
                 ])
-                
-                # Display the styled DataFrame in Streamlit
-                st.title("Heart Disease Prediction Report")
+        
+                # Display the styled DataFrame
                 st.dataframe(
                     styled_df,
                     use_container_width=True
-        )
+                )
 
     # Parkinson's Prediction Page
     elif selected == "Parkinson's Prediction":
@@ -665,8 +665,9 @@ if st.session_state.logged_in:
                         "No unit", "No unit", "No unit", "No unit", "No unit"
                     ]
                 }
-
+                # Convert to DataFrame
                 df = pd.DataFrame(test_data)
+        
                 # Style the DataFrame
                 styled_df = df.style.set_table_styles([
                     {"selector": "thead", "props": [("background-color", "#4CAF50"), ("color", "white"), ("font-weight", "bold"), ("text-align", "center")]},
@@ -674,11 +675,10 @@ if st.session_state.logged_in:
                     {"selector": "tbody tr:nth-child(even)", "props": [("background-color", "#f9f9f9")]},
                     {"selector": "tbody tr:hover", "props": [("background-color", "#e0f7fa")]}  # Highlight on hover
                 ])
-                
-                # Display the styled DataFrame in Streamlit
-                st.title("Heart Disease Prediction Report")
+        
+                # Display the styled DataFrame
                 st.dataframe(
                     styled_df,
                     use_container_width=True
-        )
+                )
 
