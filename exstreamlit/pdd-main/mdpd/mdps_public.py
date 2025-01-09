@@ -376,6 +376,13 @@ if st.session_state.logged_in:
         if st.session_state.show_report:
             show_report = st.button("Click here to see Test Report")
             if show_report:
+                # Patient Information
+                st.markdown(f"#### Patient Information:")
+                st.markdown(f"*Patient Name*: {patient_name}")
+                st.markdown(f"*Age*: {Age}")
+
+                # Test Parameters and Values
+                st.markdown(f"#### Test Parameters and Values:")
                 # Ensure test_data is defined here
                 test_data = {
                     "Parameter Name": [
