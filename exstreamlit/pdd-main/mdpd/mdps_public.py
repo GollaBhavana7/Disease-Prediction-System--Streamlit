@@ -3,6 +3,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import re
 import sqlite3
+import pandas as pd
 
 # Initialize the SQLite database
 def init_db():
