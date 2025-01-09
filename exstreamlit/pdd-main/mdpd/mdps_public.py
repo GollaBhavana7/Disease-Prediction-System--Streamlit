@@ -3,6 +3,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import re
 import sqlite3
+import pandas as pd
 
 # Initialize the SQLite database
 def init_db():
@@ -137,25 +138,32 @@ if selected in background_images:
         background-color: #f0f0f0 !important; /* Hover background color (light gray) */
         color: black !important; /* Hover text color */
     }}
-    .stTable {{
-        border: 2px solid #ccc !important; /* Table border */
-        border-radius: 10px !important; /* Rounded table corners */
-    }}
     </style>
     """,
     unsafe_allow_html=True,
 )
-    
+
+# Reusable function to display dataframes with improved formatting
+def display_dataframe_with_styles(data, use_container_width=True):
+    df = pd.DataFrame(data)
+    st.dataframe(
+        df.style.set_table_styles([
+            {"selector": "thead", "props": [("background-color", "#4CAF50"), ("color", "white"), ("font-weight", "bold")]}
+        ]).set_properties(**{
+            'text-align': 'center',
+            'border': '1px solid black',
+            'padding': '10px'
+        }),
+        use_container_width=use_container_width
+    )
 
 # Signup Page
 if selected == "Signup":
     st.title("Signup Page")
-
     name = st.text_input("Full Name")
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     confirm_password = st.text_input("Confirm Password", type="password")
-
     if st.button("Create Account"):
         if not validate_email(email):
             st.error("Please enter a valid Gmail address (e.g., example@gmail.com).")
@@ -169,15 +177,11 @@ if selected == "Signup":
         else:
             st.error("This email is already registered. Please login.")
 
-
 # Login Page
 elif selected == "Login":
     st.title("Login Page")
-
-    # Login form fields
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
-
     if st.button("Login"):
         if not validate_email(email):
             st.error("Please enter a valid Gmail address (e.g., example@gmail.com).")
@@ -188,175 +192,39 @@ elif selected == "Login":
             st.success("Login successful!")
         else:
             st.error("Invalid email or password. Please try again.")
- 
-elif selected == "Feedback and Contact":
-    st.title("Feedback Page")
 
-    # Feedback form fields
-    feedback_name = st.text_input("Your Name")
-    feedback_email = st.text_input("Your Email")
-    feedback_message = st.text_area("Your Feedback", height=150)
-
-    if st.button("Submit Feedback"):
-        if feedback_name and feedback_email and feedback_message:
-            # Here you can add code to save the feedback to a database or send it via email
-            st.success("Thank you for your feedback!")
-        else:
-            st.error("Please fill in all fields before submitting.")
-    st.markdown("---")
-    st.markdown("### Contact Information")
-    st.markdown("For any queries or support, please reach out to us at:")
-    st.markdown("- **Phone**: +91 7569325090")
-    st.markdown("- **Email**: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
-    st.markdown("- **Email**: [punithajajam@gmail.com](mailto:punithajajam@gmail.com@gmail.com)")
-    st.markdown("- **Email**: [buradarohit18@gmail.com](mailto:buradarohit18@gmail.com)")
-    st.markdown("---")
-        
-
-# Disease Prediction Pages (visible after successful login)
-if st.session_state.logged_in:
-    # Home Page
+# Disease Prediction Pages
+elif st.session_state.logged_in:
     if selected == "Home":
         st.title("Welcome to the Predictive Disease Detection App")
-        
-        # Brief Introduction
         st.markdown("""
         This application leverages machine learning models to predict the likelihood of various diseases:
         - **Diabetes**
         - **Heart Disease**
         - **Parkinson's Disease**
-        
         Select a disease prediction option from the sidebar to get started with predictions.
         """)
-    
-        # Section for Disease Information
-        st.subheader("Disease Information")
-        
-        # Add interactive button for a user to show/hide disease details
-        show_details = st.checkbox("Click to expand disease details", value=True)
-        
-        if show_details:
-            # Create interactive sections for each disease
-            st.write("### Diabetes")
-            st.image("https://github.com/GollaBhavana7/exstreamlit/blob/main/exstreamlit/pdd-main/mdpd/images/sugar-blood-level.png?raw=true", width=150)
-            
-            with st.expander("Diabetes Overview", expanded=True):
-                st.write("**Symptoms**")
-                st.write("""
-                - Increased thirst
-                - Frequent urination
-                - Extreme hunger
-                - Unexplained weight loss
-                - Presence of ketones in the urine
-                - Fatigue
-                - Irritability
-                - Blurred vision
-                """)
-                
-                st.write("**Causes**")
-                st.write("""
-                - Insulin resistance (Type 2 Diabetes)
-                - Genetic factors
-                - Age, with risk increasing after 45 years old
-                - Lack of physical activity
-                - Poor diet (high in sugar and unhealthy fats)
-                - Obesity
-                """)
-                
-                st.write("**Prevention**")
-                st.write("""
-                - Maintaining a healthy weight
-                - Eating a balanced diet rich in fruits, vegetables, and whole grains
-                - Regular physical activity
-                - Avoiding excessive alcohol and tobacco use
-                - Monitoring blood sugar levels, especially for those at risk
-                """)
-    
-            # Heart Disease
-            st.write("### Heart Disease")
-            st.image("https://github.com/GollaBhavana7/exstreamlit/blob/main/exstreamlit/pdd-main/mdpd/images/heart-disease.png?raw=true", width=150)
-    
-            with st.expander("Heart Disease Overview", expanded=True):
-                st.write("**Symptoms**")
-                st.write("""
-                - Chest pain or discomfort
-                - Shortness of breath
-                - Pain in the neck, back, jaw, stomach, or shoulder
-                - Nausea, lightheadedness, or cold sweat
-                - Pain in one or both arms
-                - Fatigue
-                """)
-    
-                st.write("**Causes**")
-                st.write("""
-                - High blood pressure
-                - High cholesterol
-                - Smoking
-                - Lack of physical activity
-                - Obesity
-                - Diabetes
-                - Family history of heart disease
-                - Excessive alcohol consumption
-                """)
-    
-                st.write("**Prevention**")
-                st.write("""
-                - Keeping a healthy weight
-                - Eating a diet low in saturated fats, cholesterol, and sodium
-                - Getting regular exercise
-                - Avoiding smoking
-                - Limiting alcohol intake
-                - Managing stress effectively
-                - Monitoring blood pressure and cholesterol levels
-                """)
-    
-            # Parkinson's Disease
-            st.write("### Parkinson's Disease")
-            st.image("https://github.com/GollaBhavana7/exstreamlit/blob/main/exstreamlit/pdd-main/mdpd/images/parkinsons%20icon.png?raw=true", width=150)
-    
-            with st.expander("Parkinson's Disease Overview", expanded=True):
-                st.write("**Symptoms**")
-                st.write("""
-                - Tremors (shaking), often in hands or fingers
-                - Muscle stiffness
-                - Slowness of movement (bradykinesia)
-                - Impaired posture and balance
-                - Difficulty walking
-                - Speech changes (soft or slurred voice)
-                - Writing changes (small handwriting)
-                - Decreased sense of smell
-                """)
-    
-                st.write("**Causes**")
-                st.write("""
-                - Loss of dopamine-producing brain cells
-                - Genetic mutations (rare, but some forms of Parkinson's disease run in families)
-                - Environmental factors, such as exposure to toxins or head injuries
-                - Age, typically affecting those over 60
-                - Gender, with men being more likely to develop Parkinson's than women
-                """)
-    
-                st.write("**Prevention**")
-                st.write("""
-                - Regular physical exercise, especially aerobic exercises
-                - Healthy diet, rich in antioxidants and vitamins
-                - Avoiding exposure to toxins (such as pesticides or heavy metals)
-                - Protecting the head from injury
-                """)
     elif selected == "Diabetes Prediction":
-        st.title("Diabetes Prediction using ML")
-
-        # Input fields
-        patient_name = st.text_input("Patient Name")
+        st.title("Diabetes Prediction")
+        # Input Fields
         Pregnancies = st.number_input("Number of Pregnancies", min_value=0)
         Glucose = st.number_input("Glucose Level", min_value=0)
-        BloodPressure = st.number_input("Blood Pressure value", min_value=0)
-        SkinThickness = st.number_input("Skin Thickness value", min_value=0)
+        BloodPressure = st.number_input("Blood Pressure", min_value=0)
+        SkinThickness = st.number_input("Skin Thickness", min_value=0)
         Insulin = st.number_input("Insulin Level", min_value=0)
-        BMI = st.number_input("BMI value", min_value=0.0, format="%.2f")
-        DiabetesPedigreeFunction = st.number_input("Diabetes Pedigree Function value", min_value=0.0, format="%.2f")
-        Age = st.number_input("Age of the Person", min_value=0)
-        
+        BMI = st.number_input("BMI Value", min_value=0.0, format="%.2f")
+        Age = st.number_input("Age", min_value=0)
+        if st.button("Get Result"):
+            prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, Age]])
+            result = "Positive" if prediction[0] == 1 else "Negative"
+            st.success(f"Diabetes Prediction: {result}")
+            display_dataframe_with_styles({
+                "Parameter": ["Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness", "Insulin", "BMI", "Age"],
+                "Value": [Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, Age]
+            })
+
+# Repeat similar sections for Heart Disease and Parkinson's Predictions with `display_dataframe_with_styles`
+      
         if st.button("Diabetes Test Result"):
             # Model prediction
             try:
