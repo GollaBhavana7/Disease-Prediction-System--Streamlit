@@ -666,5 +666,19 @@ if st.session_state.logged_in:
                     ]
                 }
 
-                # Display the table using st.table
-                st.table(test_data)
+                df = pd.DataFrame(test_data)
+                # Style the DataFrame
+                styled_df = df.style.set_table_styles([
+                    {"selector": "thead", "props": [("background-color", "#4CAF50"), ("color", "white"), ("font-weight", "bold"), ("text-align", "center")]},
+                    {"selector": "tbody", "props": [("color", "black"), ("font-weight", "bold"), ("text-align", "center")]},
+                    {"selector": "tbody tr:nth-child(even)", "props": [("background-color", "#f9f9f9")]},
+                    {"selector": "tbody tr:hover", "props": [("background-color", "#e0f7fa")]}  # Highlight on hover
+                ])
+                
+                # Display the styled DataFrame in Streamlit
+                st.title("Heart Disease Prediction Report")
+                st.dataframe(
+                    styled_df,
+                    use_container_width=True
+        )
+
