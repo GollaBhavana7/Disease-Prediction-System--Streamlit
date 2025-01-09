@@ -372,44 +372,45 @@ if st.session_state.logged_in:
                 st.markdown(f"### Test Result: {result}")
                 # Set session state for showing the report
                 st.session_state.show_report = True
-            if st.session_state.show_report:
-                show_report = st.button("Click here to see Test Report")
-                if show_report:
-                    # Ensure test_data is defined here
-                    test_data = {
-                        "Parameter Name": [
-                            "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness",
-                            "Insulin", "BMI", "Diabetes Pedigree Function"
-                        ],
-                        "Patient Values": [
-                            Pregnancies, Glucose, BloodPressure, SkinThickness,
-                            Insulin, BMI, DiabetesPedigreeFunction
-                        ],
-                        "Normal Range": [
-                            "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
-                        ],
-                        "Unit": [
-                            "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
-                        ]
-                    }
-            
-                    # Convert to DataFrame
-                    df = pd.DataFrame(test_data)
-            
-                    # Style the DataFrame
-                    styled_df = df.style.set_table_styles([
-                        {"selector": "thead", "props": [("background-color", "#4CAF50"), ("color", "white"), ("font-weight", "bold"), ("text-align", "center")]},
-                        {"selector": "tbody", "props": [("color", "black"), ("font-weight", "bold"), ("text-align", "center")]},
-                        {"selector": "tbody tr:nth-child(even)", "props": [("background-color", "#f9f9f9")]},
-                        {"selector": "tbody tr:hover", "props": [("background-color", "#e0f7fa")]}  # Highlight on hover
-                    ])
-            
-                    # Display the styled DataFrame
-                    st.dataframe(
-                        styled_df,
-                        use_container_width=True
-                    )
-            
+        if st.session_state.show_report:
+            show_report = st.button("Click here to see Test Report")
+            if show_report:
+                # Ensure test_data is defined here
+                test_data = {
+                    "Parameter Name": [
+                        "Pregnancies", "Glucose", "Blood Pressure", "Skin Thickness",
+                        "Insulin", "BMI", "Diabetes Pedigree Function"
+                    ],
+                    "Patient Values": [
+                        Pregnancies, Glucose, BloodPressure, SkinThickness,
+                        Insulin, BMI, DiabetesPedigreeFunction
+                    ],
+                    "Normal Range": [
+                        "0-10", "70-125", "120/80", "8-25", "25-250", "18.5-24.9", "< 1"
+                    ],
+                    "Unit": [
+                        "Number", "mg/dL", "mmHg", "mm", "mIU/L", "kg/m^2", "No units"
+                    ]
+                }
+        
+                # Convert to DataFrame
+                df = pd.DataFrame(test_data)
+        
+                # Style the DataFrame
+                styled_df = df.style.set_table_styles([
+                    {"selector": "thead", "props": [("background-color", "#4CAF50"), ("color", "white"), ("font-weight", "bold"), ("text-align", "center")]},
+                    {"selector": "tbody", "props": [("color", "black"), ("font-weight", "bold"), ("text-align", "center")]},
+                    {"selector": "tbody tr:nth-child(even)", "props": [("background-color", "#f9f9f9")]},
+                    {"selector": "tbody tr:hover", "props": [("background-color", "#e0f7fa")]}  # Highlight on hover
+                ])
+        
+                # Display the styled DataFrame
+                st.dataframe(
+                    styled_df,
+                    use_container_width=True
+                )
+    
+                
                             
                   
 
