@@ -411,10 +411,6 @@ if st.session_state.logged_in:
                     use_container_width=True
                 )
     
-                
-                            
-                  
-
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
     
