@@ -410,10 +410,7 @@ if st.session_state.logged_in:
                     styled_df,
                     use_container_width=True
                 )
-                if not all([Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction]):
-                    st.error("Please fill in all the fields before generating the report.")
-
-    
+                 
     elif selected == "Heart Disease Prediction":
         st.title('Heart Disease Prediction using ML')
     
