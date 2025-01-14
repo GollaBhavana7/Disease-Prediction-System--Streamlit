@@ -362,7 +362,7 @@ if st.session_state.logged_in:
             # Model prediction
             try:
                 diab_prediction = diabetes_model.predict(
-                    [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
+                    [[Pregnancies, Glucose (0-180), BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
                 )
                 result = "Positive" if diab_prediction[0] == 1 else "Negative"
             except Exception as e:
