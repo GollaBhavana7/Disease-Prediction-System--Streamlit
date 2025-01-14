@@ -350,19 +350,19 @@ if st.session_state.logged_in:
         # Input fields
         patient_name = st.text_input("Patient Name")
         Pregnancies = st.number_input("Number of Pregnancies", min_value=0)
-        Glucose = st.number_input("Glucose Level", min_value=0)
-        BloodPressure = st.number_input("Blood Pressure value", min_value=0)
-        SkinThickness = st.number_input("Skin Thickness value", min_value=0)
-        Insulin = st.number_input("Insulin Level", min_value=0)
-        BMI = st.number_input("BMI value", min_value=0.0, format="%.2f")
-        DiabetesPedigreeFunction = st.number_input("Diabetes Pedigree Function value", min_value=0.0, format="%.2f")
+        Glucose = st.number_input("Glucose Level (0-180)", min_value=0)
+        BloodPressure = st.number_input("Blood Pressure value (0-100)", min_value=0)
+        SkinThickness = st.number_input("Skin Thickness value (0-90)", min_value=0)
+        Insulin = st.number_input("Insulin Level (0-500)", min_value=0)
+        BMI = st.number_input("BMI value (0-50)", min_value=0.0, format="%.2f")
+        DiabetesPedigreeFunction = st.number_input("Diabetes Pedigree Function value (0-700)", min_value=0.0, format="%.2f")
         Age = st.number_input("Age of the Person", min_value=0)
         
         if st.button("Diabetes Test Result"):
             # Model prediction
             try:
                 diab_prediction = diabetes_model.predict(
-                    [[Pregnancies, Glucose (0-180), BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
+                    [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
                 )
                 result = "Positive" if diab_prediction[0] == 1 else "Negative"
             except Exception as e:
