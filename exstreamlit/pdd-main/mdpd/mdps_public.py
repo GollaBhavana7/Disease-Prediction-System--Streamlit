@@ -427,37 +427,37 @@ if st.session_state.logged_in:
             age = st.number_input('Age')
         
         with col2:
-            sex = st.number_input('Sex')
+            sex = st.number_input('Female:0 Male:1')
         
         with col3:
-            cp = st.number_input('Chest Pain types')
+            cp = st.number_input('Chest Pain types (0-3)')
         
         with col1:
-            trestbps = st.number_input('Resting Blood Pressure')
+            trestbps = st.number_input('Resting Blood Pressure (100-200)')
         
         with col2:
-            chol = st.number_input('Serum Cholestoral in mg/dl')
+            chol = st.number_input('Serum Cholestoral in mg/dl (100-600)')
         
         with col3:
-            fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl')
+            fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl (0-1)')
         
         with col1:
-            restecg = st.number_input('Resting Electrocardiographic results')
+            restecg = st.number_input('Resting Electrocardiographic results (0-1)')
         
         with col2:
-            thalach = st.number_input('Maximum Heart Rate achieved')
+            thalach = st.number_input('Maximum Heart Rate achieved (50-200)')
         
         with col3:
-            exang = st.number_input('Exercise Induced Angina')
+            exang = st.number_input('Exercise Induced Angina (0-1)')
         
         with col1:
-            oldpeak = st.number_input('ST depression induced by exercise')
+            oldpeak = st.number_input('ST depression induced by exercise (0-4)')
         
         with col2:
-            slope = st.number_input('Slope of the peak exercise ST segment')
+            slope = st.number_input('Slope of the peak exercise ST segment (0-2)')
         
         with col3:
-            ca = st.number_input('Major vessels colored by flourosopy')
+            ca = st.number_input('Major vessels colored by flourosopy (0-3)')
         
         with col1:
             thal = st.number_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect')
