@@ -355,7 +355,7 @@ if st.session_state.logged_in:
         SkinThickness = st.number_input("Skin Thickness value (0-90)", min_value=0)
         Insulin = st.number_input("Insulin Level (0-500)", min_value=0)
         BMI = st.number_input("BMI value (0-50)", min_value=0.0, format="%.2f")
-        DiabetesPedigreeFunction = st.number_input("Diabetes Pedigree Function value (0-700)", min_value=0.0, format="%.2f")
+        DiabetesPedigreeFunction = st.number_input("Diabetes Pedigree Function value (0-3)", min_value=0.0, format="%.2f")
         Age = st.number_input("Age of the Person", min_value=0)
         
         if st.button("Diabetes Test Result"):
