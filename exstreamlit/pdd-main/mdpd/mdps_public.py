@@ -562,7 +562,7 @@ if st.session_state.logged_in:
             Jitter_percent = st.text_input('MDVP:Jitter(%)')
 
         with col2:
-            Jitter_Abs = st.text_input('MDVP:Jitter(Abs)')
+            Jitter_Abs = st.text_input('MDVP:Jitter Abs')
 
         with col3:
             RAP = st.text_input('MDVP:RAP')
