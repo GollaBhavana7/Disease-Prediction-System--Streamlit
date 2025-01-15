@@ -577,7 +577,7 @@ if st.session_state.logged_in:
             Shimmer = st.text_input('MDVP:Shimmer')
 
         with col2:
-            Shimmer_dB = st.text_input('MDVP:Shimmer(dB)')
+            Shimmer_dB = st.text_input('MDVP:Shimmer')
 
         with col3:
             APQ3 = st.text_input('Shimmer:APQ3')
