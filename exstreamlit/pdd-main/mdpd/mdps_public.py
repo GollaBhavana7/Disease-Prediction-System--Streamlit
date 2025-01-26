@@ -44,7 +44,7 @@ def authenticate_user(email, password):
 init_db()
 
 # Load saved models
-diabetes_model = pickle.load(open('exstreamlit/pdd-main/mdpd/diabetes_model .sav', 'rb'))
+diabetes_model = pickle.load(open('exstreamlit/pdd-main/mdpd/diabetes_model (4).sav', 'rb'))
 heart_disease_model = pickle.load(open('exstreamlit/pdd-main/mdpd/heart_disease_model.sav', 'rb'))
 parkinsons_model = pickle.load(open('exstreamlit/pdd-main/mdpd/parkinsons_model.sav', 'rb'))
 
