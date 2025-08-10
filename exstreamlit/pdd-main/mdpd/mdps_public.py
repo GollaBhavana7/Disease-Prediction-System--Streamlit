@@ -209,9 +209,7 @@ elif selected == "Feedback and Contact":
     st.markdown("### Contact Information")
     st.markdown("For any queries or support, please reach out to us at:")
     st.markdown("- *Phone*: +91 7569325090")
-    st.markdown("- *Email*: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)")
-    st.markdown("- *Email*: [punithajajam@gmail.com](mailto:punithajajam@gmail.com@gmail.com)")
-    st.markdown("- *Email*: [buradarohit18@gmail.com](mailto:buradarohit18@gmail.com)")
+    st.markdown("- *Email*: [bhavanagolla2003@gmail.com](mailto:bhavanagolla2003@gmail.com)") 
     st.markdown("---")
         
 
@@ -689,4 +687,5 @@ if st.session_state.logged_in:
                     styled_df,
                     use_container_width=True
                 )
+
 
